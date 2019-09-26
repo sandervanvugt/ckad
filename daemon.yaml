@@ -1,0 +1,15 @@
+apiversion: apps/v1
+kind: DaemonSet
+metadata:
+  name: multi-nginx
+spec:
+  template:
+    metadata:
+      labels:
+        system: DaemonSetOne
+    spec:
+       containers:
+       - name: nginx
+         image: nginx:1.7.9
+         ports:
+         - containerPort: 80

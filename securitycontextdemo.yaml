@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginxsecure
+spec:
+  securityContext:
+    runAsNonRoot: true
+  containers:
+  - image: nginx
+    name: nginx

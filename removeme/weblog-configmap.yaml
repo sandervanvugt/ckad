@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-config
+data:
+  fluentd.conf: |
+    <source>
+      @type tail
+      format none
+      path /var/log/nginx/access.log
+      tag count.format1
+    </source>
+
+    <match *.**>
+      @type forward
+
+      <server>
+        name localhost
+        host 127.0.0.1
+      </server>
+    </match>

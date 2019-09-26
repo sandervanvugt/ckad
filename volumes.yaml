@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vol2
+spec:
+  containers:
+  - name: centos2
+    image: centos:7
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+    - mountPath: /test
+      name: test
+  restartPolicy: Always
+  volumes:
+    - name: test
+      emptyDir: {}

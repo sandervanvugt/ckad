@@ -1,0 +1,13 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: sleepy
+spec:
+  containers:
+  - name: sleep-container
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date; sleep 5; done"]
+    env:
+    - name: BASE_URL
+      value: "https://sleepy.example.com"  

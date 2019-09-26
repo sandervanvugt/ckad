@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: sidecar-pod
+spec:
+  volumes:
+  - name: logs
+    emptyDir: {}
+
+  containers:
+  - name: app
+    image: busybox
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date >> /var/log/date.txt; sleep
+10;done"]
+    volumeMounts:
+    - name: logs
+      mountPath: /var/log
+
+  - name: sidecar
+    image: centos/httpd
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: logs
+      mountPath: /var/www/html

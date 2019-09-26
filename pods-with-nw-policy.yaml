@@ -1,0 +1,44 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: database-pod
+  namespace: default
+  labels:
+    app: database
+spec:
+  containers:
+    - name: database
+      image: alpine
+---
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: web-pod
+  namespace: default
+  labels:
+    app: web
+spec:
+  containers:
+    - name: web
+      image: alpine
+
+---
+
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: db-networkpolicy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: database
+  policyTypes:
+  - Ingress
+  - Egress 
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: web

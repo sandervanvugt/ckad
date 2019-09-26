@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar
+  labels:
+    type: webserver
+spec:
+  volumes:
+    - name: weblog-pv-storage
+      persistentVolumeClaim:
+        claimName: weblog-pv-claim
+    - name: log-config
+      configMap:
+        name: fluentd-condfig
+  containers:
+  - name: nginxweb
+    image: nginx
+    ports: 
+    - containerPort: 80
+    volumeMounts:
+      - mountPath: /var/log/nginx
+        name: weblog-pv-storage
+  - name: fluentlog
+    image: fluent/fluentd
+    env:
+    - name: FLUENTD_ARGS
+      value: -c /etc/fluentd-config/fluentd.conf
+    volumeMounts:
+      - mountPath: /var/log
+        name: weblog-pv-storage
+      - name: log-config
+        mountPath: /etc/fluentd-config
