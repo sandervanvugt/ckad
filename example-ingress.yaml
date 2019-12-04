@@ -9,7 +9,7 @@ spec:
   - host: hello-world.info
     http:
       paths:
-      - path: /(.+)
+      - path: /|/(.+)
         backend:
           serviceName: web
           servicePort: 8080
