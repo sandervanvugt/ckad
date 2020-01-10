@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # verified on Fedora 31 WS
+egrep '^flags.*(vmx|svm)' /proc/cpuinfo || (echo enable CPU virtualization support and try again && exit 9)
 
 dnf clean all
 dnf -y upgrade
