@@ -7,7 +7,7 @@ dnf clean all
 dnf -y upgrade
 
 # install KVM software
-dnf install @virtualization
+dnf install @virtualization -y
 systemctl enable --now libvirtd
 
 # install kubectl
@@ -31,5 +31,5 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 chmod +x minikube
 mv minikube /usr/local/bin
 
-echo at this point, reboot your Fedora Workstation. After reboot, manually run (as non-root)
+echo at this point, reboot your Fedora Workstation. After reboot, manually run as non-root
 echo minikube start --memory 4096 --vm-driver=kvm2
