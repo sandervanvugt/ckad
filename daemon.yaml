@@ -1,8 +1,11 @@
-apiversion: apps/v1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: multi-nginx
 spec:
+  selector:
+    matchLabels:
+      system: DaemonSetOne
   template:
     metadata:
       labels:
