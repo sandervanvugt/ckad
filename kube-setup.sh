@@ -31,5 +31,15 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 chmod +x minikube
 mv minikube /usr/local/bin
 
+#Addd SUDO_USER to libvirt group so that can so that the minikube start command will work after reboot
+if [ -z "$SUDO_USER" ] 
+then
+	echo "Did you log in a root?  please add a non-root user to the libvirt group.  EX:  usermod -a -G libvirt UserID"
+else
+	echo "Adding $SUDO_USER to libvirt group."
+  usermod -a -G libvirt $SUDO_USER
+fi
+
+
 echo at this point, reboot your Fedora Workstation. After reboot, manually run as non-root
 echo minikube start --memory 4096 --vm-driver=kvm2
