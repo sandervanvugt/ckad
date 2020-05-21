@@ -1,0 +1,4 @@
+sudo -i
+history
+w
+exit

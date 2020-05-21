@@ -1,0 +1,25 @@
+sudo hostnamectl set-hostname minikube.example.com
+sudo grep vmx /proc/cpuinfo
+sudo poweroff
+sudo grep vmx /proc/cpuinfo
+sudo free -m
+df -h
+sudo yum install -y git
+git clone https://github.com/sandervanvugt/kubernetes
+cd kubernetes/
+ls
+vim kube-setup.sh 
+su reset
+resete
+reset
+sudo -i
+minikube start --memory=4096 --vm-driver=kvm2
+id
+sudo usermod -aG libvirt student
+newgrp libvirt
+minikube start --memory=4096 --vm-driver=kvm2
+minikube status
+kubectl get all
+sudo poweroff
+sudo systemctl enable --now sshd
+ip a | grep 136
