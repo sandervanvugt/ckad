@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginxsvc-ingress
@@ -10,6 +10,16 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: nginxsvc
-          servicePort: 80
+          service: 
+            name: nginxsvc
+            port: 
+              number: 80
+      - path: /hello
+        pathType: Prefix
+        backend:
+          service:
+            name: newdep
+            port:
+              number: 8080
