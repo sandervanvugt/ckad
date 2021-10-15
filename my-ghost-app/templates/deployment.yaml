@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-app
+spec: 
+  selector:
+    matchLabels:
+      app: ghost-app
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: ghost-app
+    spec:
+      containers:
+      - name: ghost-app
+        image: ghost
+        ports:
+        - containerPort: 2368
+        env:
+        - name: url
+          {{- if .Values.prodUrlSchema }}
+          value: http://{{ .Values.baseUrl }}
+          {{- else }}
+          value: http://{{ .Values.datacenter }}.non-prod.{{ .Values.baseUrl }}
+          {{- end }}
+
