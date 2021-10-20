@@ -2,6 +2,11 @@
 #
 # verified on Fedora 31, 33, 34 and Ubuntu LTS 20.04
 
+echo this script is no longer supported
+echo use minikube-setup-docker.sh to install minikube on top of recent Ubuntu workstation
+echo if you want to use this script anyway, edit it to remove lines 4-9
+exit
+
 echo this script works on Fedora 31, 33, 34 and Ubuntu 20.04
 echo it does NOT currently work on Fedora 32
 echo it requires the machine where you run it to have 6GB of RAM or more
