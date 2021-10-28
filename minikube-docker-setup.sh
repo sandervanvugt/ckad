@@ -22,4 +22,4 @@ echo manually run minikube start --vm-driver=docker to start minikube
 sudo usermod -aG docker $USER
 newgrp docker
 
-minikube start --vm-driver=docker
+minikube start --vm-driver=docker --cni=calico
