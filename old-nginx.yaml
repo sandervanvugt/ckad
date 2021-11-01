@@ -23,11 +23,4 @@ spec:
       - image: nginx:1.14
         name: nginx
         resources: {}
-        volumeMounts:
-        - name: configfile
-          mountPath: /usr/share/nginx/html/
-      volumes:
-      - name: configfile
-        configMap:
-          name: canary
 status: {}
