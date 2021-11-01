@@ -1,8 +1,8 @@
-apiVersion: "stable.linux.com/v1"
+apiVersion: "stable.example.com/v1"
 kind: BackUp
 metadata:
   name: mybackup
 spec: 
-  timeSpec: "* * * * */5"
+  backupType: full
   image: linux-backup-image
   replicas: 5
