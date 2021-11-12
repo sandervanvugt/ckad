@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-server
+spec:
+
+  volumes:
+  - name: shared-data
+    hostPath:
+      path: /mydata
+
+  containers:
+
+  - name: file-server
+    image: nginx
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+
+  - name: db-server
+    image: busybox
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: shared-data
+      mountPath: /var/log
+    command: ["/bin/sh"]
+    args: ["-c", "while sleep 5; do date >> /var/log/date.log; done"]
+
+  - name: log-server
+    image: mariadb
