@@ -1,6 +1,6 @@
 #!/bin/bash
 # added 23 Feb. 2022
-# currently only supported on WSL2 - Ubuntu 20.04 LTS
+# currently only supported on WSL2 - Ubuntu
 
 sudo apt-get update
 sudo apt-get upgrade -y
