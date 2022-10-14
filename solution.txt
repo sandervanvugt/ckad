@@ -7,6 +7,8 @@ CONFIGURATION: Ubuntu 2022 VM running on VMWare Fusion on MacOS Intel fully patc
 *	after replaceing the calico plugin with the weave plugin using kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 	-	apk add curl --update works from alpine pod
 	-	networkpolicy does not work
+CONFIGURATION: Fedora Core 36 VM running on VMware Fustion on MacOS Intel fully patched
+*	calico network plugin does nog handle the netwerkpolicy correctly and allows traffic even if labels are unset
 
 To test networkpolicy, use https://github.com/sandervanvugt/ckad/nwp-complete-example.yaml.
 After installation of this, kubectl exec -it busybox -- wget --spider --timeout=1 nginx is supposed to fail, it doesn't. 
