@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: alpine
-    image: alpine:3.9
+    image: alpine/curl
     command:
     - "sleep"
     - "3600"
