@@ -36,7 +36,7 @@ then
 fi
 
 echo the script is now ready
-echo manually run minikube start --vm-driver=docker --cni=calico to start minikube
+echo manually run minikube start --vm-driver=docker --memory=6G --cni=calico to start minikube
 
 sudo usermod -aG docker $USER
 newgrp docker
