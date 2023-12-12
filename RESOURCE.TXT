@@ -1,0 +1,15 @@
+# related recorded courses
+Getting started with Kubernetes 3/rd edition: https://learning.oreilly.com/course/getting-started-with/9780138057626/
+KCNA: https://learning.oreilly.com/course/kubernetes-and-cloud/9780137993413/
+CKAD 3/rd edition: https://learning.oreilly.com/course/certified-kubernetes-application/9780138086558/
+CKA 3/rd edition: https://learning.oreilly.com/course/certified-kubernetes-administrator/9780138103804/
+Managing Microservices with kubernetes and Istio: https://learning.oreilly.com/course/building-and-managing/9780137649686/
+
+# related labs
+CKAD labs: https://learning.oreilly.com/playlists/ea6ea0fc-d8e2-422c-94dd-a0a8f608d224/
+CKA lab: https://learning.oreilly.com/playlists/d6e3fe86-067c-4dc7-a36d-698802d0bdee/
+
+# related live training
+CKA Crash Course: https://learning.oreilly.com/live-events/certified-kubernetes-administrator-cka-crash-course/0636920315766/
+Building Microservices with Containers, Kubernetes and Istio: https://learning.oreilly.com/live-events/building-microservices-with-containers-kubernetes-and-istio/0636920408468/0636920097237/
+Getting Started with OpenShift: https://learning.oreilly.com/live-events/getting-started-with-openshift/0636920244301/0636920097830/
