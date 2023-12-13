@@ -9,7 +9,7 @@ fi
 
 if [ ! -f /tmp/ckad-lab6-check1 ]
 then
-	if kubectl get pods labpod -o yaml | grep '512Mi' >/dev/null
+	if kubectl get pods lab6pod -o yaml | grep '512Mi' >/dev/null
 	then 
 		echo -e "\033[32m[OK]\033[0m\t\t The pod lab6pod is restricted to using 512 MiB RAM"
 	else 
@@ -19,7 +19,7 @@ then
 	fi
 fi
 
-if kubectl get pods labpod -o yaml | grep '512Mi' >/dev/null
+if kubectl get pods lab6pod -o yaml | grep '512Mi' >/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t The pod lab6pod is restricted to using 512 MiB RAM"
 else
