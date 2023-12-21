@@ -22,7 +22,7 @@ if kubectl get services lab12svc | grep -i 'nodeport' &> /dev/null
 then
         echo -e "\033[32m[OK]\033[0m\t\t Good! The Service is set as a NodePort type"
 else
-	echo -e "\033[31m[FAIL]\033[0m\t\t I did find the Service, but it is using the wrong type. Use \033[1mkubectl edit svc lab12svc\033[0m to open the default editor, and change the type line to read \033[1mtype: NodePort\033[0m" && exit 4
+	echo -e "\033[31m[FAIL]\033[0m\t\t I did find the Service, but it is using the wrong type. Use \033[1mkubectl edit svc lab12svc\033[0m to open the default editor, and change the type line to read \033[1mtype: NodePort\033[0m. Also make sure to include \033[1mnodePort: 32000\033[0m to set the exposed port on nodes to 32000." && exit 4
 fi
 
 
