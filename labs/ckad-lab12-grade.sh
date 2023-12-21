@@ -13,7 +13,7 @@ if kubectl get services | grep "lab12svc" >/dev/null
 then 
 	echo -e "\033[32m[OK]\033[0m\t\t The service lab12svc is available"
 else 
-	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find a Service with the name lab12svc. Did you use \033[1mkubectl expose deploy lab12deploy --port=80\033[0m to start it?" && exit 4
+	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find a Service with the name lab12svc. Did you use \033[1mkubectl expose deploy lab12deploy --name lab12svc --port=80\033[0m to start it?" && exit 4
 fi
 
 
