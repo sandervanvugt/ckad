@@ -5,7 +5,7 @@ if kubectl get deploy | grep "lab12deploy" >/dev/null
 then 
 	echo -e "\033[32m[OK]\033[0m\t\t The deployment lab12deploy is running"
 else 
-	echo -e "\033[31m[FAIL]\033[0m\t\t The deployment lab12deploy is not running. Did you use \033[1mkubectl create deploy salesweb --replicas=3 --image=nginx:1.23\033[0m to start it?" && exit 3
+	echo -e "\033[31m[FAIL]\033[0m\t\t The deployment lab12deploy is not running. Did you use \033[1mkubectl create deploy lab12deploy --replicas=3 --image=nginx:1.23\033[0m to start it?" && exit 3
 fi
 
 # check if there is a service resource running
