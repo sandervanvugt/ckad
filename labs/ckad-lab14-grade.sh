@@ -13,7 +13,7 @@ if kubectl get pvc | grep "lab14-pvc" >/dev/null
 then 
 	echo -e "\033[32m[OK]\033[0m\t\t PVC lab14-pvc is running"
 else 
-	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find a PVC with the name lab14-pvc. There is no easy command to create a PVC. Have a look at the example file \033[1mpv-pvc-pod.yaml\033[0m in the course Git repository for an example and create your own lab14-pvc.yaml based on this. Next use  \033[1mkubectl apply -f lab14-pvc.yaml\033[0m to create it it?" && exit 4
+	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find a PVC with the name lab14-pvc. There is no easy command to create a PVC. Have a look at the example file \033[1mpv-pvc-pod.yaml\033[0m in the course Git repository for an example and create your own lab14-pvc.yaml based on this. Next use  \033[1mkubectl apply -f lab14-pvc.yaml\033[0m to create it it." && exit 4
 fi
 
 # verify that the PVC is bound to a PV
