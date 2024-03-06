@@ -9,19 +9,19 @@ else
 fi
 
 # verify that a PVC is created
-if kubectl get pvc | grep "lab14-pvc" >/dev/null
+if kubectl get pvc | grep "pvc-lab14" >/dev/null
 then 
-	echo -e "\033[32m[OK]\033[0m\t\t PVC lab14-pvc is running"
+	echo -e "\033[32m[OK]\033[0m\t\t PVC pvc-lab14 is running"
 else 
-	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find a PVC with the name lab14-pvc. There is no easy command to create a PVC. Have a look at the example file \033[1mpv-pvc-pod.yaml\033[0m in the course Git repository for an example and create your own lab14-pvc.yaml based on this. Next use  \033[1mkubectl apply -f lab14-pvc.yaml\033[0m to create it it." && exit 4
+	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find a PVC with the name pvc-lab14. There is no easy command to create a PVC. Have a look at the example file \033[1mpv-pvc-pod.yaml\033[0m in the course Git repository for an example and create your own pvc-lab14.yaml based on this. Next use  \033[1mkubectl apply -f pvc-lab14.yaml\033[0m to create it it." && exit 4
 fi
 
 # verify that the PVC is bound to a PV
-if [[ $(kubectl get pvc | awk '/lab14-pvc/ { print $2 }') == "Bound" ]] >/dev/null
+if [[ $(kubectl get pvc | awk '/pvc-lab14/ { print $2 }') == "Bound" ]] >/dev/null
 then 
-	echo -e "\033[32m[OK]\033[0m\t\t PVC lab14-pvc is bound to a Persistent Volume"
+	echo -e "\033[32m[OK]\033[0m\t\t PVC pvc-lab14 is bound to a Persistent Volume"
 else 
-	echo -e "\033[31m[FAIL]\033[0m\t\t I have found the PVC lab14-pvc but it doesn't show as bound to any storage. Did you include a \033[1mstorageClassName\033[0m property in the lab14-pvc.yaml file? If you did, remove it and run \033[1mkubectl apply lab14-pvc.yaml\033[0m to update the PVC" && exit 4
+	echo -e "\033[31m[FAIL]\033[0m\t\t I have found the PVC pvc-lab14 but it doesn't show as bound to any storage. Did you include a \033[1mstorageClassName\033[0m property in the pvc-lab14.yaml file? If you did, remove it and run \033[1mkubectl apply pvc-lab14.yaml\033[0m to update the PVC" && exit 4
 fi
 
 # verify that a pod with the name lab14 is running
@@ -41,11 +41,11 @@ else
 fi
 
 # use minikube ssh ls /PATH/labfile to verify the file has been written
-if minikube ssh ls /tmp/hostpath-provisioner/default/lab14-pvc/lab14file >/dev/null
+if minikube ssh ls /tmp/hostpath-provisioner/default/pvc-lab14/lab14file >/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t I can find the testfile in the hostPath PV that the StorageClass has created."
 else 
-	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find the testfile in the hostPath PV that the StorageClass has created. Did you use the name \033[1mlab14-pvc\033[0m for the PVC?" && exit 4
+	echo -e "\033[31m[FAIL]\033[0m\t\t I cannot find the testfile in the hostPath PV that the StorageClass has created. Did you use the name \033[1mpvc-lab14\033[0m for the PVC?" && exit 4
 fi
 
 echo
