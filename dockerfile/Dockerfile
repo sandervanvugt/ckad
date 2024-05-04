@@ -1,13 +1,11 @@
-FROM centos:7
+FROM alpine
 MAINTAINER Sander <mail@sandervanvugt.nl>
 
-# Add repo file
-ADD ./sander.repo /etc/yum.repos.d/
+# Add file
+ADD ./countdown /apps
 
 # Install cool software
-RUN yum --assumeyes update && \
-yum --assumeyes install bash nmap iproute && \
-yum clean all
+RUN apk add bash 
 
-ENTRYPOINT ["/usr/bin/nmap"]
-CMD ["-sn", "172.17.0.0/24"] 
+ENTRYPOINT ["/apps/countdown"]
+CMD ["1"] 
