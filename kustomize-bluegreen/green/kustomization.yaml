@@ -1,0 +1,7 @@
+resources:
+  - greencm.yaml
+  - green-svc.yaml
+  - deployment.yaml
+
+patchesStrategicMerge:
+  - patch.yaml

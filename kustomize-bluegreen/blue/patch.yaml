@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: blue-deploy
+spec:
+  template:
+    spec:
+      volumes:
+      - name: configfile
+        configMap:
+          name: blue
+      containers:
+      - name: nginx
+        volumeMounts:
+        - name: configfile
+          mountPath: /usr/share/nginx/html/

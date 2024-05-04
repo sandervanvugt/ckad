@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: green-deploy
+spec:
+  template:
+    spec:
+      containers:
+      - name: nginx
+        volumeMounts:
+        - name: configfile
+          mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: configfile
+        configMap:
+          name: green
+

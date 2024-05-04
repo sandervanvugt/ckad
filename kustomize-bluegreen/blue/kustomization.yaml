@@ -1,0 +1,8 @@
+resources:
+  - bluecm.yaml
+  - blue-svc.yaml
+  - deployment.yaml
+  - myapp-ing.yaml
+
+patchesStrategicMerge:
+  - patch.yaml
