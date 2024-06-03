@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 COUNTER=$1
 COUNTER=$(( COUNTER * 60 ))
