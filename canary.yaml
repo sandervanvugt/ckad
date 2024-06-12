@@ -29,5 +29,5 @@ spec:
       volumes:
       - name: configfile
         configMap:
-          name: canary
+          name: old-version
 status: {}
