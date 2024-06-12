@@ -13,7 +13,7 @@ spec:
       paths:
       - backend:
           service:
-            name: new-version
+            name: new-nginx
             port:
               number: 80
         path: /
