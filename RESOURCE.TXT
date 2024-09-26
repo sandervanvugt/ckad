@@ -4,6 +4,7 @@ KCNA: https://learning.oreilly.com/course/kubernetes-and-cloud/9780137993413/
 CKAD 3/rd edition: https://learning.oreilly.com/course/certified-kubernetes-application/9780138086558/
 CKA 3/rd edition: https://learning.oreilly.com/course/certified-kubernetes-administrator/9780138103804/
 Managing Microservices with kubernetes and Istio: https://learning.oreilly.com/course/building-and-managing/9780137649686/
+CKAD 4/ed: https://learning.oreilly.com/course/certified-kubernetes-application/9780135349700/
 Automating Kubernetes with GitOps: https://learning.oreilly.com/course/automating-kubernetes-with/9780138230258/
 
 # related labs
