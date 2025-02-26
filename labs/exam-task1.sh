@@ -7,7 +7,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if [[ $(echo $(kubectl get -n indiana secret insecret -o yaml | awk '/color/ { print $2 }')| base64 -d) == blue ]] &>/dev/null
+if [[ $(echo $(kubectl get -n indiana secret insecret -o yaml | awk '/COLOR/ { print $2 }')| base64 -d) == blue ]] &>/dev/null
 then
         echo -e "\033[32m[OK]\033[0m\t\t secret insecret with COLOR=blue was found"
         SCORE=$(( SCORE + 10 ))
