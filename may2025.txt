@@ -179,3 +179,208 @@
   179  curl nginxsvc.info
   180  history
   181  history > /tmp/may2025.txt
+  182  ip a
+  183  sudo apt install openssh-server
+  184  kubectl get pods -n kube-system 
+  185  history | less
+  186  vim nwpolicy-complete-example.yaml 
+  187  kubectl apply -f nwpolicy-complete-example.yaml 
+  188  kubectl expose pod nginx --port=80
+  189  kubectl exec -it busybox -- wget --spider --timeout=1 nginx
+  190  kubectl label pod busybox access="true"
+  191  kubectl exec -it busybox -- wget --spider --timeout=1 nginx
+  192  history
+  193  kubectl describe netpol access-nginx 
+  194  kubectl get pods --show-labels
+  195  vim somethinglikethis.yaml
+  196  history
+  197  curl -k https://192.168.49.2:8443/healthz
+  198  grep -i probe *
+  199  vim nginx-probes.yaml 
+  200  kubectl get pods -n kube-system 
+  201  kubectl edit -n kube-system kube-apiserver-minikube
+  202  kubectl edit pod -n kube-system kube-apiserver-minikube
+  203  kubectl get ns
+  204  kubectl api-versions
+  205  cat redis-deploy.yaml 
+  206  kubectl create -f redis-deploy.yaml 
+  207  kubectl api-resources | less
+  208  vim redis-deploy.yaml 
+  209  kubectl create -f redis-deploy.yaml 
+  210  kubectl explain --recursive deploy.spec | less
+  211  kubectl api-resources | grep -i custom
+  212  vim crd-object.yaml 
+  213  kubectl api-resources | grep backup
+  214  kubectl create -f crd-object.yaml 
+  215  kubectl api-resources | grep backup
+  216  vim crd-backup.yaml 
+  217  kubectl create -f crd-backup.yaml 
+  218  kubectl get backups
+  219  kubectl get crds
+  220  kubectl explain pod.spec.volumes | less
+  221  kubectl apply -f https://k8s.io/examples/pods/storage/redis.yaml
+  222  kubectl describe pod redis
+  223  kubectl exec -it redis -- touch /data/redis/helloworld
+  224  minikube ssh
+  225  kubectl get pods
+  226  kubectl exec -it redis -- ls -l /data/redis
+  227  kubectl delete --force pod redis
+  228  minikube ssh
+  229  ./countdown 13
+  230  kubectl apply -f https://k8s.io/examples/pods/storage/pv-volume.yaml
+  231  kubectl describe pv task-pv-volume
+  232  kubectl get pv task-pv-volume -o yaml
+  233  minikube addons list
+  234  kubectl get storageclass
+  235  kubectl describe storageclasses.storage.k8s.io 
+  236  kubectl get pv,pvc
+  237  kubectl apply -f https://k8s.io/examples/pods/storage/pv-claim.yaml
+  238  kubectl get pv,pvc
+  239  kubectl describe pvc task-pv-claim 
+  240  kubectl apply -f https://k8s.io/examples/pods/storage/pv-pod.yaml
+  241  kubectl get pods task-pv-pod -o yaml | less
+  242  kubectl exec task-pv-pod -- touch /usr/share/nginx/html/testfile
+  243  kubectl describe pv task-pv-volume 
+  244  minikube ssh
+  245  vim labvol.yaml
+  246  kubectl apply -f labvol.yaml 
+  247  kubectl exec hostpath-example-linux -- cat /usr/share/nginx/html/index.html
+  248  cat labvol.yaml 
+  249  kubectl expose pod hostpath-example-linux --port=80
+  250  kubectl label pod hostpath-example-linux app=hostpath
+  251  kubectl expose pod hostpath-example-linux --port=80
+  252  kubectl get svc
+  253  kubectl edit svc hostpath-example-linux 
+  254  kubectl get svc
+  255  kubectl edit svc hostpath-example-linux 
+  256  kubectl get svc
+  257  curl 192.168.49.2:32032
+  258  history
+  259  cat labvol.yaml 
+  260  kubectl create deploy mydb --image=mariadb
+  261  kubectl get all --selector app=mydb
+  262  kubectl describe pod mydb-7c9ddb78dc-gjxtr 
+  263  kubectl logs mydb-7c9ddb78dc-gjxtr 
+  264  kubectl set env deploy mydb MARIADB_ROOT_PASSWORD=password
+  265  kubectl get deployments.apps mydb -o yaml > mydb.yaml
+  266  vim mydb.yaml 
+  267  history
+  268  kubectl create configmap -h | less
+  269  kubectl get deploy
+  270  kubectl delete deploy mydb nginxsvc redis upapp
+  271  minikube ssh
+  272  df -h
+  273  kubectl get deploy
+  274  kubectl create deploy mydb --image=mariadb --replicas=3
+  275  kubectl get all --selector app=mydb
+  276  kubectl create cm mydbvars --from-literal=ROOT_PASSWORD=password
+  277  kubectl get cm mydbvars -o yaml
+  278  kubectl set env deploy/mydb --from configmap/mydbvars --prefix=MARIADB_
+  279  kubectl get deploy mydb -o yaml | grep env -A 5
+  280  df -h
+  281  sudo poweroff
+  282  ./countdown 15
+  283  ./countdown 17
+  284  ./countdown 12
+  285  ./countdown 1
+  286  ./countdown 8
+  287  ./countdown 13
+  288  sudo apt install docker.io
+  289  sudo systemctl stop docker
+  290  sudo systemctl disable --now docker.socket
+  291  systemctl --user start docker.service
+  292  systemctl --user start dockerd.service
+  293  sudo systemctl status docker.service
+  294  free -m
+  295  git clone https://github.com/sandervanvugt/ckad
+  296  cd ckad
+  297  ls
+  298  ./minikube-docker-setup.sh 
+  299  sudo fdisk /dev/nvme0n1
+  300  sudo resize2fs /dev/nvme0n1p2
+  301  df -h
+  302  minikube start
+  303  minikube ssh
+  304  kubectl get deploy mydb -o yaml | grep env -A 5
+  305  source <(kubectl completion bash)
+  306  history
+  307  echo hello configuration > index.html
+  308  kubectl create cm myindex --from-file=index.html
+  309  rm index.html 
+  310  kubectl describe cm myindex 
+  311  kubectl create deploy myweb --image=nginx
+  312  kubectl edit deploy myweb 
+  313  kubectl exec myweb-56976c75bc-8dhpg -- cat /usr/share/nginx/html/index.html
+  314  kubectl create secret generic dbpw --from-literal=ROOT_PASSWORD=password
+  315  kubectl describe secret dbpw
+  316  kubectl get secret dbpw -o yaml
+  317  echo cGFzc3dvcmQ= | base64 -d
+  318  kubectl create deploy mybewdb --image=mariadb
+  319  kubectl set env deploy mybewdb --from=secret/dbpw --prefix=MARIADB_
+  320  history
+  321  kubectl create ns indiana
+  322  kubectl create secret generic -n indiana insecret --from-literal=COLOR=blue
+  323  kubectl run -n indiana inpod --image=nginx --dry-run=client -o yaml > inpod.yaml
+  324  kubectl get pods mybewdb-84799cd96b-6chds -o yaml
+  325  vim inpod.yaml 
+  326  kubectl apply -f inpod.yaml 
+  327  vim inpod.yaml 
+  328  kubectl apply -f inpod.yaml 
+  329  kubectl exec -n indiana -- echo $COLOR
+  330  kubectl exec -n indiana inpod -- echo $COLOR
+  331  history
+  332  vim inpod.yaml 
+  333  echo old nginx > index.html
+  334  kubectl create cm old --from-file=index.html
+  335  echo new nginx > index.html
+  336  kubectl create cm new --from-file=index.html
+  337  cd ckad
+  338  cat canary.yaml 
+  339  vim canary.yaml 
+  340  kubectl apply -f canary.yaml 
+  341  kubectl get all --selector type=canary
+  342  vim canary.yaml
+  343  kubectl apply -f canary.yaml
+  344  kubectl get all --selector type=canary
+  345  kubectl expose deploy old-version --name=theapp --port=80 --selector type=canary --type=NodePort
+  346  kubectl expose deploy old --name=theapp --port=80 --selector type=canary --type=NodePort
+  347  kubectl get all --selector type=canary
+  348  curl 192.168.49.2:31018
+  349  history
+  350  kubectl exec -it -n indiana inpod -- bash
+  351  kubectl exec -n indiana inpod -- sh -c 'echo $COLOR'
+  352  kubectl exec -n indiana inpod -- env
+  353  cd
+  354  cd .kube
+  355  ls
+  356  less config 
+  357  kubectl get pods
+  358  kubectl get pods -o yaml | less
+  359  kubectl get pods -n kube-system calico-node-x8kjw -o yaml | less
+  360  kubectl get sa
+  361  kubectl get sa -n kube-system
+  362  kubectl get sa storage-provisioner -n kube-system -o yaml
+  363  kubectl create ns bellevue
+  364  kubectl create role viewer -n bellevue --verb=get --verb=list --verb=watch --resource=pods
+  365  kubectl create sa viewer -n bellevue
+  366  kubectl create rolebinding --serviceaccount=bellevue:viewer --role=viewer -n bellevue
+  367  kubectl create rolebinding viewer --serviceaccount=bellevue:viewer --role=viewer -n bellevue
+  368  kubectl create deploy viewnginx --image=nginx --replicas=3 -n bellevue
+  369  kubectl set serviceaccount deployment viewginx viewer -n bellevue
+  370  kubectl set serviceaccount deployment viewnginx viewer -n bellevue
+  371  kubectl auth can-i get pods --as--systemLserviceaccount:bellevue:viewer -n bellevue
+  372  kubectl auth can-i get pods --as--system:serviceaccount:bellevue:viewer -n bellevue
+  373  kubectl auth can-i get pods --as=system:serviceaccount:bellevue:viewer -n bellevue
+  374  kubectl auth can-i get pods --as=system:serviceaccount:bellevue:viewer -n default
+  375  cd ~/ckad
+  376  vim securitycontextdemo2.yaml 
+  377  kubectl apply -f securitycontextdemo2.yaml 
+  378  kubectl exec -it security-context-demo -- sh
+  379  vim securitycontextdemo.yaml 
+  380  kubectl apply -f securitycontextdemo.yaml 
+  381  kubectl get pods
+  382  kubectl describe pod nginxsecure 
+  383  less RESOURCE.TXT 
+  384  history > may2025.txt
+  385  ip a
+  386  history > /tmp/may2025.txt
