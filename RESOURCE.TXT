@@ -15,3 +15,6 @@ CKA lab: https://learning.oreilly.com/playlists/d6e3fe86-067c-4dc7-a36d-698802d0
 CKA in 6 hours: https://learning.oreilly.com/live-events/cka-in-6-hours-certified-kubernetes-administrator-crash-course/0790145076879/0790145076860/
 Building Microservices with Containers, Kubernetes and Istio: https://learning.oreilly.com/live-events/building-microservices-with-containers-kubernetes-and-istio/0636920408468/0636920097237/
 Getting Started with OpenShift: https://learning.oreilly.com/live-events/getting-started-with-openshift/0636920244301/0636920097830/
+
+# 30% discount on the CKAD exam
+Use the coupon code SANDER30 on checkout and book the exam here: https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/?source=aw&sv1=affiliate&sv_campaign_id=1937207&awc=85919_1754216222_69d0ea6b7bf719aae37f70bc14982b22
