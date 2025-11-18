@@ -1,0 +1,128 @@
+    1  minikube start --cni=calico --memory=6G
+    2  docker run nginx
+    3  docker ps
+    4  sudo find / -name "395f34b30c24*"
+    5  history
+    6  sudo ls -l /var/lib/docker/containers/395f34b30c24bafafed69e636f9826ee284300bf1502f16b40e398e08508cd33
+    7  docker ps
+    8  docker logs 395f34b30c24
+    9  find . -name "Dockerfile"
+   10  cd dockerfile/
+   11  vim Dockerfile 
+   12  ls
+   13  vim Dockerfile 
+   14  docker build -t counter .
+   15  docker images
+   16  docker run counter
+   17  vim Dockerfile 
+   18  docker run counter sh
+   19  vim Dockerfile 
+   20  docker build -t counter .
+   21  docker run counter:latest 
+   22  docker run counter:latest sh
+   23  docker run -it counter:latest sh
+   24  vim Dockerfile 
+   25  docker run counter 12
+   26  docker build -t counter .
+   27  docker run counter 12
+   28  history
+   29  vim Dockerfile 
+   30  docker build -t counter .
+   31  cat Dockerfile 
+   32  history
+   33  #git clone https://github.com/sandervanvugt/ckad
+   34  history
+   35  ls *sh
+   36  cd ..
+   37  ls *sh
+   38  kubectl run nginx
+   39  kubectl run xnign --image=nginx
+   40  kubectl api-resources | less
+   41  kubectl create deploy dfirstapp --image=nginx
+   42  kubectl get all
+   43  kubectl delete pod dfirstapp-844b6b5df-m4h47
+   44  kubectl get all
+   45  source <(kubectl completion bash)
+   46  kubectl get pods dfirstapp-844b6b5df-h994s -o yaml | less
+   47  kubectl completion -h | less
+   48  kubectl run -h | less
+   49  history
+   50  kubectl explain pod.spec | less
+   51  kubectl get nodes
+   52  kubectl run two --image=nginx
+   53  kubectl get pods
+   54  kubectl describe two
+   55  kubectl describe pod two
+   56  kubectl describe pod two | less
+   57  kubectl run two --image=nginx --dry-run=client -o yaml
+   58  kubectl run two --image=nginx --dry-run=client -o yaml > two.yaml
+   59  kubectl apply -f two.yaml
+   60  kubectl explain pod.spec.restartPolicy
+   61  vim two.yaml 
+   62  kubectl apply -f two.yaml
+   63  ls -l
+   64  vim tigera-operator.yaml 
+   65  kubectl get ns
+   66  kubectl get pods
+   67  kubectl get pods -n kube-system
+   68  kubectl get pods -A
+   69  kubectl create ns secret
+   70  kubectl get ns
+   71  kubectl run secretpod --image=nginx -n secret
+   72  kubectl get pods
+   73  kubectl get pods -n secret
+   74  history
+   75  grep init *
+   76  ls
+   77  vim my-init.yaml
+   78  kubectl apply -f my-init.yaml 
+   79  kubectl get pods
+   80  kubectl describe pod myapp-pod 
+   81  kubectl get pods
+   82  kubectl delete -f my-init.yaml 
+   83  vim my-init.yaml 
+   84  kubectl apply -f my-init.yaml 
+   85  kubectl get pods
+   86  kubectl describe pod myapp-pod
+   87  kubectl create deploy mydb --image=mariadb --replicas=3
+   88  kubectl get pods
+   89  kubectl describe pod mydb-5fcf4f6fbb-xm56b 
+   90  kubectl logs mydb-5fcf4f6fbb-xm56b 
+   91  kubectl get pods
+   92  kubectl edit pod myapp-pod 
+   93  history
+   94  vim lab.txt
+   95  cat lab.txt 
+   96  vim sideding.yaml
+   97  kubectl apply -f sideding.yaml 
+   98  kubectl get all --selector app=myapp
+   99  vim sideding.yaml
+  100  kubectl logs myapp-6bd6dbf849-txrxq 
+  101  kubectl logs myapp-6bd6dbf849-txrxq -c logshipper
+  102  kubectl get pods
+  103  history
+  104  vim sideding.yaml 
+  105  kubectl run sidepod --image=nginx --dry-run=client -o yaml > sidepodd.yaml
+  106  vim sideding.yaml
+  107  vim sidepodd.yaml 
+  108  kubectl apply -f sidepodd.yaml 
+  109  kubectl get pods
+  110  kubectl describe pod sidepod 
+  111  kubectl run nginx1 --image=nginx
+  112  kubectl get pods nginx1
+  113  kubectl get pods nginx1 -o yaml | grep restart
+  114  kubectl delete pods nginx1
+  115  kubectl get pods nginx1
+  116  kubectl run nginx2 --image=nginx
+  117  minikube ssh
+  118  kubectl create job onejob --image=busybox -- date
+  119  kubectl get jobs, pods
+  120  kubectl get jobs,pods
+  121  kubectl get pods onejob-st8wg -o yaml | grep restartPolicy
+  122  kubectl delete job onejob
+  123  kubectl create job mynewjob --image=busybox --dry-run=client -o yaml -- sleep 5 >mmynewjob.yaml
+  124  vim mmynewjob.yaml 
+  125  kubectl apply -f mmynewjob.yaml 
+  126  kubectl get all
+  127  kubectl get jobs,pods
+  128  history > /tmp/nov25.txt
