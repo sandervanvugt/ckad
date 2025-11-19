@@ -1,0 +1,21 @@
+                                       |--->   31966    node1-|                          |-- pod1 (1.0.0.1)
+                                       |                      |---service (10.0.0.1)     |
+               ingress                 |                      |   (ClusterIP)            |-- pod2 (1.0.0.2)
+                                       |--->   31966    node2-|   (NodePort)             |  
+user -->                   LB          |                      |                          |-- pod3 (1.0.0.3)
+                        (Metallb)      |                      |                          |
+                                       |--->   31966    node3-|                          |--
+	                               |                      |                          |--
+                                 (ext net)              (clusternet)              (pod network)
+
+
+
+
+
+
+
+
+
+
+
+

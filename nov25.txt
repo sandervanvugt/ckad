@@ -1,128 +1,384 @@
-    1  minikube start --cni=calico --memory=6G
-    2  docker run nginx
-    3  docker ps
-    4  sudo find / -name "395f34b30c24*"
-    5  history
-    6  sudo ls -l /var/lib/docker/containers/395f34b30c24bafafed69e636f9826ee284300bf1502f16b40e398e08508cd33
-    7  docker ps
-    8  docker logs 395f34b30c24
-    9  find . -name "Dockerfile"
-   10  cd dockerfile/
-   11  vim Dockerfile 
-   12  ls
-   13  vim Dockerfile 
-   14  docker build -t counter .
-   15  docker images
-   16  docker run counter
-   17  vim Dockerfile 
-   18  docker run counter sh
-   19  vim Dockerfile 
-   20  docker build -t counter .
-   21  docker run counter:latest 
-   22  docker run counter:latest sh
-   23  docker run -it counter:latest sh
-   24  vim Dockerfile 
-   25  docker run counter 12
-   26  docker build -t counter .
-   27  docker run counter 12
-   28  history
-   29  vim Dockerfile 
-   30  docker build -t counter .
-   31  cat Dockerfile 
-   32  history
-   33  #git clone https://github.com/sandervanvugt/ckad
-   34  history
-   35  ls *sh
-   36  cd ..
-   37  ls *sh
-   38  kubectl run nginx
-   39  kubectl run xnign --image=nginx
-   40  kubectl api-resources | less
-   41  kubectl create deploy dfirstapp --image=nginx
-   42  kubectl get all
-   43  kubectl delete pod dfirstapp-844b6b5df-m4h47
-   44  kubectl get all
-   45  source <(kubectl completion bash)
-   46  kubectl get pods dfirstapp-844b6b5df-h994s -o yaml | less
-   47  kubectl completion -h | less
-   48  kubectl run -h | less
-   49  history
-   50  kubectl explain pod.spec | less
-   51  kubectl get nodes
-   52  kubectl run two --image=nginx
-   53  kubectl get pods
-   54  kubectl describe two
-   55  kubectl describe pod two
-   56  kubectl describe pod two | less
-   57  kubectl run two --image=nginx --dry-run=client -o yaml
-   58  kubectl run two --image=nginx --dry-run=client -o yaml > two.yaml
-   59  kubectl apply -f two.yaml
-   60  kubectl explain pod.spec.restartPolicy
-   61  vim two.yaml 
-   62  kubectl apply -f two.yaml
-   63  ls -l
-   64  vim tigera-operator.yaml 
-   65  kubectl get ns
-   66  kubectl get pods
-   67  kubectl get pods -n kube-system
-   68  kubectl get pods -A
-   69  kubectl create ns secret
-   70  kubectl get ns
-   71  kubectl run secretpod --image=nginx -n secret
-   72  kubectl get pods
-   73  kubectl get pods -n secret
-   74  history
-   75  grep init *
-   76  ls
-   77  vim my-init.yaml
-   78  kubectl apply -f my-init.yaml 
-   79  kubectl get pods
-   80  kubectl describe pod myapp-pod 
-   81  kubectl get pods
-   82  kubectl delete -f my-init.yaml 
-   83  vim my-init.yaml 
-   84  kubectl apply -f my-init.yaml 
-   85  kubectl get pods
-   86  kubectl describe pod myapp-pod
-   87  kubectl create deploy mydb --image=mariadb --replicas=3
-   88  kubectl get pods
-   89  kubectl describe pod mydb-5fcf4f6fbb-xm56b 
-   90  kubectl logs mydb-5fcf4f6fbb-xm56b 
-   91  kubectl get pods
-   92  kubectl edit pod myapp-pod 
-   93  history
-   94  vim lab.txt
-   95  cat lab.txt 
-   96  vim sideding.yaml
-   97  kubectl apply -f sideding.yaml 
-   98  kubectl get all --selector app=myapp
-   99  vim sideding.yaml
-  100  kubectl logs myapp-6bd6dbf849-txrxq 
-  101  kubectl logs myapp-6bd6dbf849-txrxq -c logshipper
-  102  kubectl get pods
-  103  history
-  104  vim sideding.yaml 
-  105  kubectl run sidepod --image=nginx --dry-run=client -o yaml > sidepodd.yaml
-  106  vim sideding.yaml
-  107  vim sidepodd.yaml 
-  108  kubectl apply -f sidepodd.yaml 
+    1  student@ceph1:~$ ls
+    2  Desktop    Downloads  Pictures  Templates  ceph-cluster.yaml  cka
+    3  Documents  Music      Public    Videos     ceph-toolbox.yaml  sna
+    4  sudo apt update
+    5  sudo apt install open-vm-tools open-vm-tools-desktop -y
+    6  sudo reboot
+    7  docker run countdown 15
+    8  id
+    9  newgrp docker
+   10  cat /etc/os-release 
+   11  arch
+   12  free -m
+   13  lsblk
+   14  sudo apt install -y vim git
+   15  git clone https://github.com/sandervanvugt/ckad
+   16  cd ckad/
+   17  ls
+   18  ls *sh
+   19  ./minikube-docker-setup.sh 
+   20  docker run countdown 15
+   21  ./countdown 15
+   22  ./countdown 4
+   23  ./countdown 15
+   24  ./countdown 5
+   25  minikube start --cni=calico --memory=6G
+   26  docker run nginx
+   27  docker ps
+   28  sudo find / -name "395f34b30c24*"
+   29  history
+   30  sudo ls -l /var/lib/docker/containers/395f34b30c24bafafed69e636f9826ee284300bf1502f16b40e398e08508cd33
+   31  docker ps
+   32  docker logs 395f34b30c24
+   33  find . -name "Dockerfile"
+   34  cd dockerfile/
+   35  vim Dockerfile 
+   36  ls
+   37  vim Dockerfile 
+   38  docker build -t counter .
+   39  docker images
+   40  docker run counter
+   41  vim Dockerfile 
+   42  docker run counter sh
+   43  vim Dockerfile 
+   44  docker build -t counter .
+   45  docker run counter:latest 
+   46  docker run counter:latest sh
+   47  docker run -it counter:latest sh
+   48  vim Dockerfile 
+   49  docker run counter 12
+   50  docker build -t counter .
+   51  docker run counter 12
+   52  history
+   53  vim Dockerfile 
+   54  docker build -t counter .
+   55  cat Dockerfile 
+   56  history
+   57* 
+   58  history
+   59  ls *sh
+   60  cd ..
+   61  ls *sh
+   62  kubectl run nginx
+   63  kubectl run xnign --image=nginx
+   64  kubectl api-resources | less
+   65  kubectl create deploy dfirstapp --image=nginx
+   66  kubectl get all
+   67  kubectl delete pod dfirstapp-844b6b5df-m4h47
+   68  kubectl get all
+   69  source <(kubectl completion bash)
+   70  kubectl get pods dfirstapp-844b6b5df-h994s -o yaml | less
+   71  kubectl completion -h | less
+   72  kubectl run -h | less
+   73  history
+   74  kubectl explain pod.spec | less
+   75  kubectl get nodes
+   76  kubectl run two --image=nginx
+   77  kubectl get pods
+   78  kubectl describe two
+   79  kubectl describe pod two
+   80  kubectl describe pod two | less
+   81  kubectl run two --image=nginx --dry-run=client -o yaml
+   82  kubectl run two --image=nginx --dry-run=client -o yaml > two.yaml
+   83  kubectl apply -f two.yaml
+   84  kubectl explain pod.spec.restartPolicy
+   85  vim two.yaml 
+   86  kubectl apply -f two.yaml
+   87  ls -l
+   88  vim tigera-operator.yaml 
+   89  kubectl get ns
+   90  kubectl get pods
+   91  kubectl get pods -n kube-system
+   92  kubectl get pods -A
+   93  kubectl create ns secret
+   94  kubectl get ns
+   95  kubectl run secretpod --image=nginx -n secret
+   96  kubectl get pods
+   97  kubectl get pods -n secret
+   98  history
+   99  grep init *
+  100  ls
+  101  vim my-init.yaml
+  102  kubectl apply -f my-init.yaml 
+  103  kubectl get pods
+  104  kubectl describe pod myapp-pod 
+  105  kubectl get pods
+  106  kubectl delete -f my-init.yaml 
+  107  vim my-init.yaml 
+  108  kubectl apply -f my-init.yaml 
   109  kubectl get pods
-  110  kubectl describe pod sidepod 
-  111  kubectl run nginx1 --image=nginx
-  112  kubectl get pods nginx1
-  113  kubectl get pods nginx1 -o yaml | grep restart
-  114  kubectl delete pods nginx1
-  115  kubectl get pods nginx1
-  116  kubectl run nginx2 --image=nginx
-  117  minikube ssh
-  118  kubectl create job onejob --image=busybox -- date
-  119  kubectl get jobs, pods
-  120  kubectl get jobs,pods
-  121  kubectl get pods onejob-st8wg -o yaml | grep restartPolicy
-  122  kubectl delete job onejob
-  123  kubectl create job mynewjob --image=busybox --dry-run=client -o yaml -- sleep 5 >mmynewjob.yaml
-  124  vim mmynewjob.yaml 
-  125  kubectl apply -f mmynewjob.yaml 
-  126  kubectl get all
-  127  kubectl get jobs,pods
-  128  history > /tmp/nov25.txt
+  110  kubectl describe pod myapp-pod
+  111  kubectl create deploy mydb --image=mariadb --replicas=3
+  112  kubectl get pods
+  113  kubectl describe pod mydb-5fcf4f6fbb-xm56b 
+  114  kubectl logs mydb-5fcf4f6fbb-xm56b 
+  115  kubectl get pods
+  116  kubectl edit pod myapp-pod 
+  117  history
+  118  vim lab.txt
+  119  cat lab.txt 
+  120  vim sideding.yaml
+  121  kubectl apply -f sideding.yaml 
+  122  kubectl get all --selector app=myapp
+  123  vim sideding.yaml
+  124  kubectl logs myapp-6bd6dbf849-txrxq 
+  125  kubectl logs myapp-6bd6dbf849-txrxq -c logshipper
+  126  kubectl get pods
+  127  history
+  128  vim sideding.yaml 
+  129  kubectl run sidepod --image=nginx --dry-run=client -o yaml > sidepodd.yaml
+  130  vim sideding.yaml
+  131  vim sidepodd.yaml 
+  132  kubectl apply -f sidepodd.yaml 
+  133  kubectl get pods
+  134  kubectl describe pod sidepod 
+  135  kubectl run nginx1 --image=nginx
+  136  kubectl get pods nginx1
+  137  kubectl get pods nginx1 -o yaml | grep restart
+  138  kubectl delete pods nginx1
+  139  kubectl get pods nginx1
+  140  kubectl run nginx2 --image=nginx
+  141  minikube ssh
+  142  kubectl create job onejob --image=busybox -- date
+  143  kubectl get jobs, pods
+  144  kubectl get jobs,pods
+  145  kubectl get pods onejob-st8wg -o yaml | grep restartPolicy
+  146  kubectl delete job onejob
+  147  kubectl create job mynewjob --image=busybox --dry-run=client -o yaml -- sleep 5 >mmynewjob.yaml
+  148  vim mmynewjob.yaml 
+  149  kubectl apply -f mmynewjob.yaml 
+  150  kubectl get all
+  151  kubectl get jobs,pods
+  152  history > /tmp/nov25.txt
+  153  ip a
+  154  sudo apt install openssh-server
+  155  kubectl get jobs,pods
+  156  ls -lrt
+  157  cat mmynewjob.yaml 
+  158  grep -e "init" -e "15" *
+  159  grep -e "init" -e "15" * -l
+  160  grep -i initcontainer
+  161  grep -i initcontainer *
+  162  cat sidepodd.yaml 
+  163  cp sidepodd.yaml /tmp
+  164  ip a
+  165  minikube start --cni=calico --memory=6G
+  166  grep -i initcontainer -l *
+  167  cd ckad/
+  168  grep -i initcontainer -l *
+  169  vim sideding.yaml 
+  170  vim sidepodd.yaml 
+  171  kubectl get pods
+  172  kubectl delete pod sidepod 
+  173  kubectl apply -f sidepodd.yaml 
+  174  kubectl get pods
+  175  kubectl create cronjob -h | less
+  176  kubectl create cronjob my-job --image=busybox --schedule="*/1 * * * *"
+  177  kubectl get cronjobs,jobs,pods
+  178  date
+  179  kubectl get cronjobs,jobs,pods
+  180  kubectl create deploy notsobusy --image=busybox
+  181  kubectl get all --selector app=notsobusy
+  182  kubectl describe pod notsobusy-64b848cb44-fjx9s 
+  183  kubectl create cronjob runme --image=busybox --schedule="*/2 * * * *" -- echo whatever
+  184  kubectl create job runme --from=cronjob/runme
+  185  kubectl get cronjobs,jobs,pods
+  186  kubectl logs runme-29392766-4d9b7 
+  187  kubectl delete cronjob runme
+  188  kubectl delete pods all
+  189  kubectl delete pods --all
+  190  kubectl create quota -h | less
+  191  kubectl create quota my-quota --hard=cpu=1,memory=1G,pods=2,services=3,replicationcontrollers=2,resourcequotas=1,secrets=5,persistentvolumeclaims=10
+  192  kubectl describe quota
+  193  kubectl create deploy yes --image=nginx --replicas=5
+  194  kubectl get all --selector app=yes
+  195  kubectl describe replicasets.apps 
+  196  kubectl set resources -h | less
+  197  kubectl set resources deployment yes --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=64Mi
+  198  kubectl get all --selector app=yes
+  199  kubectl describe rs yes-6bb686449d 
+  200  history
+  201  kubectl get quota
+  202  kubectl describe quota
+  203  kubectl describe ns default 
+  204  kubectl delete quota
+  205  kubectl get quota
+  206  kubectl delete quota my-quota
+  207  kubectl get all --selector app=yes
+  208  kubectl scale deploy yes --replicas=3
+  209  kubectl get all --selector app=yes
+  210  kubectl describe pod yes-6bb686449d-26cxf 
+  211  kubectl get pods
+  212  history
+  213  vim frontend-resources.yaml 
+  214  kubectl create ns nebraska
+  215  kubectl create deploy snowdeploy -n nebraska --image=nginx 
+  216  kubectl set resources -h | less
+  217  #kubectl set resources deployment nginx --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
+  218  kubectl set resources deploy snowdeploy -n nebraska --limits=memory=128Mi --requests=memory=64Mi
+  219  kubectl get ds -A
+  220  ssh student@192.168.29.163
+  221  ssh student@192.168.29.161
+  222  history | grep miniku
+  223  history
+  224  kubectl get deploy
+  225  kubectl scale deploy yes --replicas=4
+  226  kubectl get pods --show-labels
+  227  kubectl get deploy yes -o yaml | less
+  228  kubectl get all --show-labels
+  229  kubectl get all --selector app=myapp
+  230  kubectl create deploy bluelabel --image=nginx
+  231  kubectl label deployments.apps bluelabel state=demo
+  232  kubectl get deploy --show-labels
+  233  kubectl get all --selector state=demo
+  234  kubectl get all --selector app=bluelabel
+  235  kubectl describe deployments.apps bluelabel | less
+  236  kubectl get all --selector app=bluelabel
+  237  kubectl label pod bluelabel-6655494bb4-zt4mp app-
+  238  kubectl get pods | grep blue
+  239  kubectl get pods --show-labels | grep blue
+  240  kubectl edit deployments.apps bluelabel 
+  241  kubectl get deploy
+  242  kubectl get deploy bluelabel -o yaml | less
+  243  kubectl create deploy notes --image=nginx --dry-run=client -o yaml > notes.yaml
+  244  kubectl apply -f notes.yaml 
+  245  kubectl get deploy notes -o yaml | less
+  246  kubectl annotate deploy notes newnote="my note"
+  247  kubectl get deploy notes -o yaml | less
+  248  kubectl get all --selector app=bluelabel
+  249  kubectl delete pod bluelabel-6655494bb4-mkd8d 
+  250  kubectl get all --selector app=bluelabel
+  251  kubectl scale deploy bluelabel --replicas=0
+  252  kubectl get all --selector app=bluelabel
+  253  kubectl delete deploy --all
+  254  kubectl create deploy upapp --image=nginx:1.17 --replicas=5
+  255  kubectl get deploy uppapp -o yaml | grep -A5 strategy
+  256  kubectl get deploy upapp -o yaml | grep -A5 strategy
+  257  kubectl set image deploy/upapp nginx=nginx:1.18
+  258  kubectl get all 
+  259  kubectl edit deploy upapp 
+  260  kubectl get all --selector app=upapp
+  261  kubectl set image deploy/upapp nginx=nginx:1.19
+  262  kubectl get all --selector app=upapp
+  263  history
+  264  ls
+  265  ls pull*
+  266  vim pullratelimitpatch.sh 
+  267  kubectl get ns
+  268  vim pullratelimitpatch.sh 
+  269  vim rolling.yaml 
+  270  kubectl create -f rolling.yaml 
+  271  kubectl rollout history deployment 
+  272  kubectl edit deploy rolling-nginx 
+  273  kubectl rollout history deployment 
+  274  kubectl describe deployments.apps rolling-nginx 
+  275  kubectl rollout history deployment rolling-nginx --revision=2
+  276  kubectl rollout history deployment rolling-nginx --revision=1
+  277  kubectl get all
+  278  kubectl rollout undo deployment rolling-nginx --to-revision=1
+  279  kubectl get all
+  280  minikube addons list
+  281  minikube addons enable metrics-server
+  282  cd autoscaling/
+  283  ls
+  284  docker build -t php-apache .
+  285  vim hpa.yaml 
+  286  kubectl apply -f hpa.yaml 
+  287  kubectl autoscale deployment php-apache --cpu-percent=5 --min=3 --max=6
+  288  kubectl get hpa
+  289  history
+  290  cd
+  291  kubectl create deploy updates --image=nginx --replicas=3 --label type=prod
+  292* kubectl create deploy -h | le
+  293  kubectl create deploy updates --image=nginx --replicas=3 --dry-run=client -o yaml > exo.yaml
+  294  vim exo.yaml
+  295  kubectl get deployments.apps 
+  296  kubectl get deployments.apps rolling-nginx -o yaml | less
+  297  vim exo.yaml
+  298  kubectl apply -f exo.yaml 
+  299  kubectl get all --selector app=updates
+  300  kubectl set image -h | less
+  301  kubectl set image deployment/updates nginx=nginx:latest
+  302  kubectl get all --selector app=updates
+  303  kubectl rollout undo deployment updates 
+  304  kubectl get all --selector app=updates
+  305  kubectl create deploy daemons --image=nginx --dry-run=client -o yaml > daemons.yaml
+  306  vim daemons.yaml 
+  307  kubectl apply -f daemons.yaml 
+  308  kubectl get ds
+  309  vim daemons.yaml 
+  310  sudo snap install helm --classic
+  311  helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+  312  helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
+  313  arch
+  314  kubectl get ns
+  315  kubectl get all -n kubernetes-dashboard 
+  316  kubectl get ns
+  317  history | grep dashboard
+  318  helm repo add bitnami  https://charts.bitnami.com/bitnami
+  319  helm repo list
+  320  helm search repo bitnami
+  321  helm search repo file
+  322  helm search repo nginx --versions
+  323  helm repo update
+  324  helm list
+  325  helm install bitnami/mysql --generate-name
+  326  kubectl get all
+  327  helm show chart bitnami/mysql 
+  328  helm show all chart bitnami/mysql 
+  329  helm show all bitnami/mysql 
+  330  helm list
+  331  helm list --all-namespaces
+  332  helm status mysql-1763574269 
+  333  helm show values
+  334  helm show values bitnami/mysql 
+  335  helm repo -h
+  336  helm repo lsit
+  337  helm repo list
+  338  helm show value bitnami/nginx
+  339  helm show values bitnami/nginx
+  340  helm show values bitnami/nginx | grep commonLa
+  341  helm show values bitnami/nginx | grep replicaCou
+  342  vim values.yaml
+  343  helm install bitnami/nginx --generate-name --values values.yaml
+  344  helm list
+  345  kubectl get deploy --show-labels
+  346  cd ckad/
+  347  find . -name "kustomiz*"
+  348  cd kustomization/
+  349  ls
+  350  vim kustomization.yaml 
+  351  kubectl apply -k .
+  352  cd
+  353  git clone https://github.com/sandervanvugt/kubernetes
+  354  cd kubernetes/
+  355  ls
+  356  less ART-kube-network.txt 
+  357  vim ART-kube-network.txt
+  358  ./countdown 13
+  359  history
+  360  vim ART-kube-network.txt
+  361  kubectl create deploy nginxsvc --image=nginx
+  362  kubectl scale deploy nginxsvc --replicas=3
+  363  kubectl expose deploy nginxsvc --port=80
+  364  kubectl get svc
+  365  curl 10.109.159.18
+  366  curl 10.109.159.19
+  367  kubectl describe svc nginxsvc 
+  368  kubectl get endpoints
+  369  minikube ssh
+  370  kubectl edit svc nginxsvc 
+  371  kubectl get svc
+  372  minikube ip
+  373  curl 192.168.49.2:31957
+  374  history
+  375  kubectl describe svc -n kube-system kube-dns 
+  376  kubectl create ns elsewhere
+  377  kubectl run nginxpod --image=nginx -n elsewhere
+  378  kubectl expose -n elsewhere pod nginxpod --port=80
+  379  kubectl run testpod --image=busybox -- sleep infinity
+  380  kubectl exec -it testpod -- cat /etc/resolv.conf
+  381  kubectl exec -it testpod -- wget --spider --timeout=1 nginxpod
+  382  kubectl exec -it testpod -- wget --spider --timeout=1 nginxpod.elsewhere.svc.cluster.local
+  383  vim ART-kube-network.txt
+  384  history > /tmp/nov25.txt
