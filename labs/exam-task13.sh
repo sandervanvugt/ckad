@@ -1,4 +1,4 @@
-if kubectl get pods -o yaml securepod | grep 'runAsGroup: 2000' &>/dev/null
+if kubectl get pods -o yaml securedpod | grep -Pzo "supplementalGroups:\s*\n\s*- 2000" &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t securepod is running with group ID 2000"
 	SCORE=$(( SCORE + 10 ))
@@ -7,7 +7,7 @@ else
 fi
 TOTAL=$(( TOTAL + 10 ))
 
-if kubectl get pods -o yaml securepod | grep 'allowPrivilegeEscalation: false' &>/dev/null
+if kubectl get pods -o yaml securedpod | grep 'allowPrivilegeEscalation: false' &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t container in pod securepod has privilege escalation disabled"
 	SCORE=$(( SCORE + 10 ))
