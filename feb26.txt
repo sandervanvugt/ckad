@@ -1,0 +1,115 @@
+    1  find . -name "Dockerfile"
+    2  cd dockerfile/
+    3  cat Dockerfile 
+    4  ls
+    5  ./countdown 1
+    6  docker build -t myapp .
+    7  docker images
+    8  docker image inspect myapp | less
+    9  docker run myapp
+   10  docker run myapp 2
+   11  nano Dockerfile 
+   12  docker run myapp 
+   13  cd
+   14  history
+   15  #git clone https://github.com/sandervanvugt/ckad
+   16  #cd ckad
+   17  ls
+   18  ls ckad/*sh
+   19  historyt
+   20  history
+   21  #./minikube-docker-setup.sh
+   22  minikube start --cni=calico --memory=6G
+   23  kubectl get all
+   24  history
+   25  kubectl --version
+   26  kubectl version
+   27  which kubectl
+   28  kubectl api-resources | less
+   29  kubectl create deploy myfirstapp --image=nginx --replicas=3
+   30  kubectl get all
+   31  kubectl delete pod myfirstapp-6f5d66c7f6-qmtgd 
+   32  kubectl get all
+   33  history
+   34  kubectl create deployment --help | less
+   35  kubectl create deployment -h | less
+   36  kubectl get pods
+   37  kubectl describe pod myfirstapp-6f5d66c7f6-hr8mp | less
+   38  history
+   39  kubectl explain pods
+   40  kubectl explain pods.spec | less
+   41  kubectl run -h | less
+   42  kubectl run nginx --image=nginx
+   43  kubectl get all
+   44  kubectl delete pod nginx
+   45  kubectl get all
+   46  kubectl run pod sapod --image=nginx
+   47  kubectl get pods
+   48  kubectl describe pod pod | less
+   49  kubectl logs pod
+   50  kubectl delete pod pod
+   51  kubectl explain pod.spec | less
+   52  kubectl explain pod.spec.containers | less
+   53  kubectl explain --recursive pod.spec | less
+   54  kubectl create deploy thedeploy --image=nginx --replicas=3 --dry-run=client -o yaml
+   55  kubectl get deploy
+   56  kubectl create deploy thedeploy --image=nginx --replicas=3 --dry-run=client -o yaml > thedeploy.yaml
+   57  kubectl apply -f thedeploy.yaml 
+   58  kubectl get deploy
+   59  vim thedeploy.yaml 
+   60  kubectl apply -f thedeploy.yaml 
+   61  kubectl get deploy
+   62  history
+   63  kubectl run --help | less
+   64  kubectl run mcp --image=nginx --image=mariadb --env MARIADB_ROOT_PASSWORD=password
+   65  kubectl get pods
+   66  cd ckad/
+   67  grep -i centos *
+   68  vim morevolumes.yaml 
+   69  kubectl get pods
+   70  kubectl get pods -A
+   71  kubectl get all
+   72  minikube addons list
+   73  minikube dashboard
+   74  bg
+   75  kubectl get ns
+   76  kubectl get pods -A
+   77  kubectl create ns secret
+   78  kubectl get ns
+   79  kubectl run secretpod --image=nginx -n secret
+   80  kubectl get pods
+   81  kubectl get pods -n secret
+   82  history
+   83  kubectl run mydb --image=mariadb
+   84  kubectl get pods
+   85  kubectl describe pod mydb
+   86  kubectl logs mydb
+   87  kubectl run -h | less
+   88  kubectl run mydbtwo --image=mariadb --env="MARIADB_ROOT_PASSWORD=password"
+   89  kubectl get pods
+   90  kubectl get events
+   91  kubectl run something --image=nginx -- /bin/sh
+   92  kubectl run -it something --image=nginx -- /bin/sh
+   93  kubectl run -it somethings --image=nginx -- /bin/sh
+   94  history
+   95  grep -il init  *
+   96  vim init-example1.yaml 
+   97  vim init-example2.yaml 
+   98  kubectl apply -f init-example2.yaml 
+   99  kubectl get pods
+  100  history
+  101  vim st.yaml
+  102  kubectl apply -f st.yaml
+  103  kubectl get pods
+  104  kubectl apply -f st.yaml
+  105  vim st.yaml
+  106  kubectl run nginx1 --image=nginx
+  107  kubectl get pods nginx1 -o yaml | grep restartP
+  108  kubectl delete pods nginx1
+  109  kubectl get pods ng*
+  110  kubectl get pods 
+  111  kubectl run nginx2 --image=nginx
+  112  minikube ssh
+  113  kubectl get pods
+  114  ip a
+  115  history > /tmp/feb26.txt
