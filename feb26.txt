@@ -338,3 +338,198 @@
   338  curl nginxsvc.info
   339  history
   340  history > /tmp/feb26.txt
+  341  kubectl get pods -n kube-system | grep calico
+  342  cd ckad
+  343  ls
+  344  vim nwpolicy-complete-example.yaml 
+  345  kubectl apply -f nwpolicy-complete-example.yaml 
+  346  kubectl get networkpolicy
+  347  kubectl expose pod nginx --port=80
+  348  kubectl get svc
+  349  kubectl exec -it busybox -- wget --spider --timeout=1 nginx
+  350  kubectl get pods --show-labels
+  351  kubectl describe networkpolicy access-nginx 
+  352  kubectl label pod busybox access="true"
+  353  kubectl exec -it busybox -- wget --spider --timeout=1 nginx
+  354  history
+  355  kubectl create ns nevada
+  356  kubectl run -h | less
+  357  kubectl run nevaginx --image=nginx --labels="type=webapp"
+  358  kubectl run nevaginx --image=nginx --labels="type=webapp" -n nevada 
+  359  vim 5minnwp.yaml
+  360  kubectl apply -f 5minnwp.yaml 
+  361  vim 5minnwp.yaml
+  362  kubectl run nevatest --image=busybox -- sleep 3600
+  363  kubectl delete pod nevatest 
+  364  kubectl run nevatest --image=busybox -- sleep 3600 -n nevada
+  365  kubectl exec -it -n nevada nevatest -- wget --spider --timeout=1 nevaginx
+  366  kubectl run nevatest --image=busybox -n nevada -- sleep 3600
+  367  kubectl -n nevada expose pod nevaginx --port=80
+  368  kubectl exec -it -n nevada nevatest -- wget --spider --timeout=1 nevaginx
+  369  kubectl get pods -n nevada --show-labels
+  370  kubectl -n nevada --label pod nevatest type=tester
+  371  kubectl --label -n nevada pod nevatest type=tester
+  372  kubectl label -n nevada pod nevatest type=tester
+  373  kubectl get pods -n nevada --show-labels
+  374  kubectl exec -it -n nevada nevatest -- wget --spider --timeout=1 nevaginx
+  375  history
+  376  curl -k https://$(minikube ip):8443/healthz
+  377  grep -i probe *
+  378  vim live.yaml
+  379  kubectl apply -f live.yaml
+  380  kubectl get pods liveness-exec 
+  381  kubectl describe pod liveness-exec 
+  382  kubectl logs liveness-exec 
+  383  arch
+  384  kubectl delete -f live.yaml
+  385  vim live.yaml 
+  386  kubectl apply -f live.yaml
+  387  kubectl get pods liveness-exec 
+  388  kubectl describe pod liveness-exec 
+  389  sleep 30
+  390  kubectl describe pod liveness-exec 
+  391  kubectl get pods liveness-exec 
+  392  kubectl api-resources | less
+  393  kubectl api-versions
+  394  kubectl create -f redis-deploy.yaml 
+  395  vim redis-deploy.yaml 
+  396  kubectl create -f redis-deploy.yaml 
+  397  kubectl get deploy
+  398  kubectl delete deploy webapp updates upapp scaledapp rolling-nginx redis notes nginxsvc daemondeploy bluelabel 
+  399  kubectl get all
+  400  kubectl get pods -n kube-system 
+  401  kubectl get pods
+  402  kubectl get pods busybox -o yaml | less
+  403  kubectl api-resources | less
+  404  kubectl api-resources | wc -l
+  405  vim crd-object.yaml 
+  406  kubectl api-resources | grep -i back
+  407  kubectl create -f crd-object.yaml 
+  408  kubectl api-resources | grep -i back
+  409  vim crd-backup.yaml 
+  410  kubectl apply -f crd-backup.yaml 
+  411  kubectl get backups
+  412  kubectl get all -n ingress-nginx 
+  413  history
+  414  vim morevolumes.yaml 
+  415  kubectl apply -f morevolumes.yaml 
+  416  kubectl describe pod morevol2 | less
+  417  kubectl exec -it morevol2 -c centos1 -- touch /centos1/hellofile
+  418  kubectl exec -it morevol2 -c centos2 -- ls /centos2
+  419  kubectl explain pod.volumes | less
+  420  kubectl explain pod
+  421  kubectl explain pod.spec.volumes | less
+  422  kubectl explain pod.spec.volumes.iscsi | less
+  423  kubectl apply -f https://k8s.io/examples/pods/storage/redis.yaml
+  424  kubectl describe pods redis 
+  425  kubectl exec -it redis -- touch /data/redis/helloworld
+  426  minikube ssh
+  427  kubectl get pods | grep redis
+  428  kubectl get pods 
+  429  kubectl exec -it redis -- ls /data/redis
+  430  minikube ssh
+  431  kubectl delete --force pod redis
+  432  minikube ssh
+  433  history
+  434  ls *pvc*
+  435  vim pv.yaml 
+  436  kubectl apply -f pv.yaml
+  437  kubectl get pv,pvc
+  438  vim pvc.yaml 
+  439  kubectl apply -f pvc.yaml
+  440  kubectl get pv,pvc
+  441  kubectl get storageclass
+  442  kubectl delete -f pvc.yaml
+  443  kubectl delete -f pv.yaml
+  444  kubectl get pv
+  445  vim pvc.yaml 
+  446  vim pv.yaml 
+  447  kubectl apply -f pv.yaml 
+  448  kubectl apply -f pvc.yaml 
+  449  kubectl get pvc,pv
+  450  history
+  451  cat pv.yaml 
+  452  cat pvc.yaml 
+  453  vim pvc.yaml 
+  454  kubectl apply -f pvc.yaml 
+  455  kubectl get pvc
+  456  kubectl describe storageclasses.storage.k8s.io standard 
+  457  kubectl get pods -n kube-system 
+  458  kubectl get pv,pvc
+  459  kubectl get pvc
+  460  vim pv-pvc-pod.yaml 
+  461  kubectl apply -f pv-pvc-pod.yaml 
+  462  kubectl get pvc
+  463  vim pv-pvc-pod.yaml 
+  464  kubectl exec -it local-pv-pod -- touch /usr/share/nginx/html/whatever.file
+  465  kubectl describe pv pvc-4fd28873-4ec0-4274-a26f-903d01a9e4d9
+  466  minikube ssh
+  467  history
+  468  kubectl create deploy mydb --image=mariadb --replicas=3
+  469  kubectl set env deploy mydb MYSQL_ROOT_PASSWORD=password
+  470  kubectl get deployments.apps mydb -o yaml | less
+  471  history
+  472  kubectl get deploy
+  473  kubectl create cm mydbvars --from-literal=ROOT_PASSWORD=password
+  474  kubectl get cm mydbvars -o yaml
+  475  kubectl set env deploy/mydb --from configmap/mydbvars --prefix=MYSQL_
+  476  kubectl get deploy mydb -o yaml | grep env -A5
+  477  echo hello world > index.html
+  478  kubectl create cm myindex --from-file=index.html
+  479  kubectl get cm myindex -o yaml
+  480  kubectl create deploy myweb --image=nginx
+  481  kubectl edit deploy myweb
+  482  kubectl get all --selector app=myweb
+  483  kubectl exec -it myweb-5876886cdc-mgg7s -- cat /usr/share/nginx/html/index.html
+  484  history
+  485  kubectl create secret generic dbpw --from-literal=ROOT_PASSWORD=password
+  486  kubectl describe secrets mdbp
+  487  kubectl describe secrets dbpw
+  488  kubectl get secret dbpw -o yaml
+  489  echo cGFzc3dvcmQ= | base64 -d
+  490  kubectl get deploy
+  491  kubectl set env deploy mydb --from=secret/dbpw --prefix=MYSQL_
+  492  kubectl get deploy mydb -o yaml | less
+  493  history
+  494  echo old nginx > index.html
+  495  kubectl create cm old --from-file=index.html
+  496  echo new nginx > index.html
+  497  kubectl create cm new --from-file=index.html
+  498  vim canary.yaml 
+  499  kubectl apply -f canary.yaml 
+  500  kubectl get all --selector type=canary
+  501  vim canary.yaml 
+  502  sed -i -e 's/old/new/' canary.yaml 
+  503  vim canary.yaml 
+  504  kubectl apply -f canary.yaml 
+  505  kubectl get all --selector type=canary
+  506  kubectl expose deploy old --name=theapp --port=80 --selector type=canary
+  507  kubectl describe svc theapp 
+  508  kubectl edit svc theapp 
+  509  kubectl get svc
+  510  curl 192.168.49.2:30317
+  511  history
+  512  kubectl edit svc theapp 
+  513  less ~/.kube/config 
+  514  kubectl config view
+  515  kubectl get pods testpod -o yaml | less
+  516  kubectl get sa
+  517  kubectl get sa -n kube-system 
+  518  kubectl create role viewer --verb=get --verb=list --verb=watch --resource=pods -n bellevue
+  519  kubectl create sa viewer -n bellevue
+  520  kubectl create rolebinding --serviceaccount=bellevue:viewer --role=viewer -n bellevue
+  521  kubectl create rolebinding viewer --serviceaccount=bellevue:viewer --role=viewer -n bellevue
+  522  kubectl create deploy viewginx --image=nginx --replicas=3 -n bellevue
+  523  kubectl set serviceaccount deployment viewginx viewer -n bellevue
+  524  kubectl auth can-i get pods --as=system:serviceaccount:bellevue:viewer -n bellevue
+  525  kubectl auth can-i get pods --as=system:serviceaccount:bellevue:viewer -n default
+  526  vim securitycontextdemo2.yaml 
+  527  kubectl apply -f securitycontextdemo2.yaml 
+  528  kubectl exec -it security-context-demo -- sh
+  529  vim securitycontextdemo.yaml 
+  530  kubectl apply -f securitycontextdemo.yaml 
+  531  kubectl describe pods nginxsecure 
+  532  kubectl get pods
+  533  ls
+  534  less RESOURCE.TXT 
+  535  history > /tmp/feb26.txt 
