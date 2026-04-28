@@ -1,0 +1,96 @@
+    1  docker run -d nginx
+    2  docker ps
+    3  docker logs 270
+    4  ls *sh
+    5  docker run -it ubuntu
+    6  docker run -it ubi10
+    7  docker search ubi
+    8  docker search fedora
+    9  docker run -it fedora
+   10  uname -r
+   11  docker run -it nginx
+   12  docker run -it nginx sh
+   13  find . -name Dockerfile
+   14  cd dockerfile/
+   15  vim Dockerfile 
+   16  docker build -t countdown .
+   17  docker images
+   18  docker image inspect countdown:latest | less
+   19  docker run countdown:latest 
+   20  docker run countdown:latest 12
+   21  docker run countdown:latest 1
+   22  cd ..
+   23  ls *sh
+   24  minikube start --cni=calico --memory=6G
+   25  kubectl get all
+   26  history
+   27  ls *sh
+   28  #./minikube-docker-setup.sh
+   29  docker build --help
+   30  docker build --help | less
+   31  kubectl create deploy myfirstapp --image=nginx --replicas=3
+   32  kubectl get all
+   33  history
+   34  kubectl create deployment -h | less
+   35  kubectl completion -h | less
+   36  kubectl get all
+   37  kubectl get pods myfirstapp-6f5d66c7f6-9zbnv -o yaml | less
+   38  kubectl explain pod
+   39  kubectl explain pod.spec | less
+   40  kubectl api-resources | less
+   41  kubectl api-resources | wc -l
+   42  kubectl run myapp --image=nginx
+   43  kubectl get all
+   44  kubectl delete pod myfirstapp-6f5d66c7f6-9zbnv 
+   45  kubectl get all
+   46  kubectl delete pod myapp 
+   47  kubectl get all
+   48  kubectl describe pod myfirstapp-6f5d66c7f6-tvvbb | less
+   49  history
+   50  kubectl create deploy twee --image=nginx --dry-run=client -o yaml
+   51  kubectl create deploy twee --image=nginx --dry-run=client -o yaml > twee.yaml
+   52  vim twee.yaml 
+   53  kubectl explain deploy.spec | less
+   54  vim twee.yaml 
+   55  kubectl apply -f twee.yaml
+   56  vim twee.yaml 
+   57  kubectl apply -f twee.yaml
+   58  kubectl delete -f twee.yaml
+   59  history
+   60  kubectl apply -f twee.yaml
+   61  cat twee.yaml 
+   62  kubectl get deploy twee -o yaml | less
+   63  vim twee.yaml 
+   64  kubectl apply -f twee.yaml
+   65  kubectl get deploy twee -o yaml | less
+   66  vim morevolumes.yaml 
+   67  kubectl apply -f morevolumes.yaml 
+   68  kubectl exec -it morevol2 -c centos1 -- touch /centos1/hello
+   69  kubectl exec -it morevol2 -c centos2 -- ls -l /centos2/
+   70  kubectl apply -f morevolumes.yaml 
+   71  vim morevolumes.yaml 
+   72  history
+   73  kubectl get pods
+   74  kubectl get pods -A
+   75  vim morevolumes.yaml 
+   76  kubectl get pods
+   77  kubectl get pods -A
+   78  kubectl create ns secret
+   79  kubectl run secretpod --image=nginx -n secret
+   80  kubectl get pods
+   81  kubectl get pods -n secret
+   82  history
+   83  kubectl create mydb --image=mariadb --replicas=3
+   84  kubectl create deploy mydb --image=mariadb --replicas=3
+   85  kubectl get all
+   86  kubectl get all --selector app=mydb --show-labels
+   87  kubectl describe pod mydb-7888d987c5-8kkts 
+   88  kubectl logs mydb-7888d987c5-f7ww8 
+   89  kubectl set env -h | less
+   90  kubectl set env deploy/mydb MARIADB_ROOT_PASSWORD=password
+   91  kubectl get all --selector app=mydb --show-labels
+   92  history
+   93  kubectl get all --selector app=mydb --show-labels
+   94  kubectl delete rs mydb-6978c6bb65 
+   95  kubectl get all --selector app=mydb --show-labels
+   96  history > /tmp/april2026
