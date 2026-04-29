@@ -94,3 +94,212 @@
    94  kubectl delete rs mydb-6978c6bb65 
    95  kubectl get all --selector app=mydb --show-labels
    96  history > /tmp/april2026
+   97  sudo apt install openssh-server
+   98  ip a
+   99  kubectl get pods
+  100  kubectl get all
+  101  grep init *
+  102  grep -l init *
+  103  vim init-example1.yaml 
+  104  kubectl apply -f init-example1.yaml 
+  105  kubectl get pods
+  106  vim init-example2.yaml 
+  107  kubectl apply -f init-example2.yaml 
+  108  kubectl get pods
+  109  vim pod-sidecar.yaml
+  110  kubectl apply -f pod-sidecar.yaml 
+  111  kubectl get pods
+  112  sleep8
+  113  sleep 6
+  114  kubectl get pods
+  115  vim pod-sidecar.yaml
+  116  kubectl run nginx1 --image=nginx
+  117  kubectl get pods nginx1 -o yaml
+  118  kubectl get pods nginx1 -o yaml | grep restartP
+  119  kubectl delete pods nginx1
+  120  kubectl get pods
+  121  kubectl run nginx2 --image=nginx
+  122  minikube ssh
+  123  kubectl get pods
+  124  kubectl explain jobs.spec | less
+  125  kubectl create job -h | less
+  126  kubectl create job onejob --image=busybox -- date
+  127  kubectl get jobs,pods
+  128  kubectl get pods onejob-fz6jj -o yaml | grep resta
+  129  kubectl delete job onejob 
+  130  kubectl get jobs,pods
+  131  kubectl create job mynewjob --image=busybox --dry-run=client -o yaml -- sleep 5 > mynewjob.yaml
+  132  vim mynewjob.yaml 
+  133  kubectl apply -f mynewjob.yaml 
+  134  kubectl get jobs,pods
+  135  sleep 50
+  136  kubectl create cronjob -h | less
+  137  kubectl create cronjob runme --image=busybox --schedule="43 * 29 4 *" -- echo greetings from the cluster
+  138  kubectl get cronjob,jobs,pods
+  139  kubectl create job runme --from=cronjob/runme
+  140  kubectl get cronjob,jobs,pods
+  141  kubectl logs runme-bptcd 
+  142  kubectl get cronjob,jobs,pods
+  143  date
+  144  history
+  145  vim frontend-resources.yaml 
+  146  kubectl apply -f frontend-resources.yaml 
+  147  kubectl get pods
+  148  kubectl describe pod frontend 
+  149  kubectl delete -f frontend-resources.yaml 
+  150  vim frontend-resources.yaml 
+  151  kubectl apply -f frontend-resources.yaml 
+  152  kubectl get pods
+  153  kubectl describe pod frontend 
+  154  kubectl delete -f frontend-resources.yaml 
+  155  vim frontend-resources.yaml 
+  156  kubectl apply -f frontend-resources.yaml 
+  157  kubectl get pods
+  158  kubectl delete -f frontend-resources.yaml 
+  159  kubectl create ns restricted
+  160  kubectl create quota myquota -n --hard=cpu=2,--memory=1G,pods=3
+  161  kubectl create quota myquota -n restricted --hard=cpu=2,--memory=1G,pods=3
+  162  kubectl create quota myquota -n restricted --hard=cpu=2,memory=1G,pods=3
+  163  kubectl describe ns restricted 
+  164  kubectl run pod restrictedpod --image=nginx -n restricted
+  165  kubectl create deploy restricteddeploy --image=nginx -n restricted
+  166  kubectl get all -n restricted 
+  167  kubectl describe rs -n restricted restricteddeploy-6475d54f49 
+  168  kubectl set resources -n restricted deploy restricteddeploy --limits=cpu=200m,memory=2G
+  169  kubectl describe -n restricted deployments.apps restricteddeploy 
+  170  kubectl get all -n restricted 
+  171  kubectl describe -n restricted rs restricteddeploy-7cff9bb448 
+  172  kubectl set resources -n restricted deploy restricteddeploy --limits=cpu=200m,memory=128M --requests=cpu=100m,memory=64M
+  173  kubectl get all -n restricted 
+  174  history
+  175  kubectl create deploy dummmy -n myname --image=nginx --dry-run=client -o yaml
+  176  kubectl get quota -n restricted 
+  177  kubectl edit quota -n restricted myquota 
+  178  kubectl get quota -n restricted 
+  179  kubectl create deploy dummmy -n myname --image=nginx --dry-run=client -o yaml
+  180  kubectl create ns nebraska
+  181  kubectl create deploy snowdeploy -n nebraska --image=nginx
+  182  kubectl set resources -h
+  183  #ubectl set resources deployment nginx --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
+  184  kubectl set resources -n nebraska deploy snowdeploy --limits=memory=128Mi --requests=memory=64Mi
+  185  kubectl -n nebraska describe deployments.apps snowdeploy 
+  186  kubectl explain deploy.spec.template.spec.containers | less
+  187  kubectl explain --recursive deploy.spec | grep require
+  188  kubectl explain --recursive deploy.spec | less
+  189  kubectl get deploy
+  190  kubectl get deploy myfirstapp -o yaml | less
+  191  kubectl get all --selector app=mydb
+  192  kubectl get deploy mydb -o yaml | less
+  193  kubectl get all --selector app=mydb
+  194  kubectl label pod mydb-6978c6bb65-dc8rk app-
+  195  kubectl get all --selector app=mydb
+  196  kubectl get all | grep mydb
+  197  kubectl create deploy bluelabel --image=nginx
+  198  kubectl label deploy bluelabel state=demo
+  199  kubectl get deploy --show-labels
+  200  kubectl get pods --show-labels | grep blue
+  201  kubectl get all --selector state=demo
+  202  kubectl get all --selector app=bluelabel
+  203  kubectl get node -o yaml | less
+  204  kubectl get nodes --selector minikube.k8s.io/version=v1.38.1
+  205  kubectl get node -o yaml | less
+  206  kubectl create deploy notes --image=nginx --dry-run=client -o yaml > notes.yaml
+  207  kubectl apply -f notes.yaml 
+  208  kubectl get deploy notes -o yaml | less
+  209  kubectl annotate deploy notes newnote="my note"
+  210  kubectl get deploy notes -o yaml | less
+  211  kubectl explain --recursive deploy.spec  | less
+  212  kubectl completion -h | less
+  213  history
+  214  kubectl get deploy
+  215  kubectl scale deployment bluelabel --replicas=0
+  216  kubectl get deploy
+  217  kubectl create deploy scaledapp --image=nginx --replicas=3
+  218  kubectl get all --selector app=scaledapp
+  219  kubectl delete pod scaledapp-7744d8d9d6-6pj78 
+  220  kubectl get all --selector app=scaledapp
+  221  kubectl scale deployment scaledapp --replicas=2
+  222  kubectl delete deploy bluelabel mydb myfirstapp notes scaledapp twee 
+  223  kubectl get all
+  224  kubectl create deploy upapp --image=nginx:1.17 --replicas=5
+  225  kubectl get deploy upapp -o yaml | grep -A5 strategy
+  226  kubectl set image deploy upapp nginx=nginx:1.18; sleep 1; kubectl get all --selector app=upapp
+  227  kubectl edit deploy upapp 
+  228  kubectl set image deploy upapp nginx=nginx:1.19; sleep 1; kubectl get all --selector app=upapp
+  229  kubectl rollout history deploy upapp
+  230  kubectl rollout history deploy upapp --revision=1
+  231  kubectl rollout undo deployment upapp --to-revision=2
+  232  kubectl get all --selector app=upapp
+  233  kubectl edit deploy upapp 
+  234  kubectl rollout history deployment upapp 
+  235  kubectl edit rs upapp-66c79cbf76 
+  236  kubectl rollout history deployment upapp 
+  237  kubectl edit rs upapp-66c79cbf76 
+  238  kubectl rollout history deployment upapp 
+  239  kubectl edit rs upapp-66c79cbf76 
+  240  kubectl edit rs upapp-86df5db9bb 
+  241  kubectl rollout history deployment upapp 
+  242  kubectl edit deployments.apps upapp 
+  243  kubectl rollout history deployment upapp 
+  244  cd autoscaling/
+  245  ls
+  246  cd ..
+  247  kubectl get deploy
+  248  kubectl scale deployment upapp --replicas=2
+  249  kubectl autoscale deploy upapp --cpu-percent=50 --min=5 --max=10
+  250  kubectl get hpa
+  251  kubectl get deploy upapp
+  252  kubectl explain hpa
+  253  kubectl explain hpa.spec
+  254  kubectl get hpa
+  255  kubectl create deploy daemon --image=nginx --dry-run=client -o yaml > daemon.yaml
+  256  vim daemon.yaml 
+  257  kubectl apply -f daemon.yaml 
+  258  vim daemon.yaml 
+  259  kubectl apply -f daemon.yaml 
+  260  kubectl get all
+  261  kubectl get ds -A
+  262  history
+  263  snap install helm --classic
+  264  helm repo add bitnami https://charts.bitnami.com/bitnami
+  265  helm install my-mariadb bitnami/mariadb --version 25.0.10
+  266  kubectl get all
+  267  kubectl get all | grep mariadb
+  268  helm repo list
+  269  helm search repo bitnami
+  270  helm search repo file
+  271  helm search repo nginx --versions
+  272  helm list
+  273  helm delete my-mariadb
+  274  helm show values bitnami/nginx
+  275  helm show values bitnami/nginx | grep commonLabels
+  276  helm show values bitnami/nginx | grep replicaC
+  277  vim values.yaml
+  278  helm install bitnami/nginx --generate-name --values values.yaml
+  279  helm get values nginx-1777478886 
+  280  kubectl get all | grep nginx
+  281  kubectl get all --show-labels | grep nginx
+  282  ls
+  283  cd kustomization/
+  284  ls
+  285  cat deployment.yaml 
+  286  cat service.yaml 
+  287  cat kustomization.yaml 
+  288  kubectl apply -k .
+  289  kubectl get all --selector environment=testing
+  290  cd
+  291  kubectl get deploy
+  292  kubectl get pods -o wide
+  293  kubectl get all --selector app=upapp
+  294  kubectl expose deploy uppapp --port=80
+  295  kubectl expose deploy upapp --port=80
+  296  kubectl get all --selector app=upapp
+  297  kubectl describe svc upapp
+  298  curl 10.107.191.91
+  299  kubectl edit svc upapp 
+  300  kubectl get all --selector app=upapp
+  301  minikube ip
+  302  curl 192.168.49.2:30585
+  303  curl 192.168.49.2:30858
+  304  history
+  305  history > /tmp/april2026 
