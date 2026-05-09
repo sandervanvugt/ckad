@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: old
+    app: new
     type: canary
-  name: old
+  name: new-nginx
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: old
+      app: new
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: old
+        app: new
         type: canary
     spec:
       containers:
@@ -29,5 +29,5 @@ spec:
       volumes:
       - name: configfile
         configMap:
-          name: old
+          name: canary
 status: {}
