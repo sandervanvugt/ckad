@@ -1,4 +1,4 @@
-if kubectl get pod securepod -n oklahoma -o yaml | grep 'serviceAccount: secure' &>/dev/null
+if kubectl get pod securepod -n oklahoma -o yaml | grep 'serviceAccountName: secure' &>/dev/null
 then
 	echo -e "\033[32m[OK]\033[0m\t\t pod securepod in namespace oklahoma found and it is using the serviceaccount secure"
 	SCORE=$(( SCORE + 10 ))
