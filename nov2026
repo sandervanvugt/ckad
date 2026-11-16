@@ -1,0 +1,167 @@
+    1  eixt
+    2  exit
+    3  sudo apt install vim git -y
+    4  git clone https://github.com/sandervanvugt/ckad
+    5  cd ckad
+    6  ls
+    7  ./minikube-docker-setup.sh 
+    8  sudo reboot
+    9  sudo systemctl reboot -i
+   10  cd ckad/
+   11  ls
+   12  vim simplejob.yaml 
+   13  history
+   14  minikube status
+   15  minikube start
+   16  kubectl get all
+   17  ls
+   18  cat busybox.yaml 
+   19  kubectl apply -f busybox.yaml 
+   20  kubectl get pods
+   21  kubectl get all
+   22  kubectl describe pod busybox2 | less
+   23  kubectl logs busybox2 
+   24  history
+   25  kubectl --help
+   26  history
+   27  kubectl apply -h |less
+   28  kubectl run -h | less
+   29  kubectl run nginx --image=nginx
+   30  kubectl get all
+   31  vim busybox.yaml 
+   32  kubectl run nginx --image=nginx --dry-run=client -o yaml
+   33  kubectl run nginx --image=nginx --dry-run=client -o yaml > nginx.yaml
+   34  vim nginx.yaml 
+   35  history
+   36  minikube status
+   37  history
+   38  kubectl get all
+   39  kubectl create deploy webserver --image=nginx
+   40  kubectl get all
+   41  kubectl delete pod webserver-85f8d869b5-bl8bk 
+   42  kubectl get all
+   43  kubectl get deploy webserver -o yaml
+   44  kubectl get all
+   45  kubectl delete deploy webserver 
+   46  kubectl create deploy webserver --image=nginx --replicas=3
+   47  kubectl get all
+   48  kubectl create deploy webserver --image=nginx --replicas=3 --dry-run=client -o yaml
+   49  kubectl create deploy webserver --image=nginx --replicas=3 --dry-run=client -o yaml > webserver.yaml
+   50  history
+   51  kubectl apply -f webserver.yaml 
+   52  kubectl get all
+   53  kubectl get deploy -o yaml
+   54  vim webserver.yaml 
+   55  kubectl apply -f webserver.yaml 
+   56  kubectl get deploy -o yaml
+   57  kubectl get pods
+   58  kubectl get pod webserver-85f8d869b5-mggmn -o yaml | less
+   59  kubectl get deployments.apps webserver -o yaml | less
+   60  kubectl describe pod webserver-85f8d869b5-mggmn | less
+   61  kubectl describe deployments.apps webserver | less
+   62  kubectl describe pod webserver-85f8d869b5-mggmn | less
+   63  kubectl get all --show-labels
+   64  kubectl get deploy webserver -o yaml | less
+   65  kubectl get all
+   66  kubectl get all --selector app=webserver
+   67  kubectl label -h | less
+   68  kubectl label deploy webserver current=something
+   69  kubectl get deploy webserver -l
+   70  kubectl get deploy webserver --show-labels
+   71  kubectl get all --selector app=webserver --show-labels
+   72  kubectl label pod webserver-85f8d869b5-mggmn -app
+   73  kubectl label pod webserver-85f8d869b5-mggmn app-
+   74  kubectl get pods --show-labels
+   75  kubectl label pod webserver-85f8d869b5-mggmn app=webserver
+   76  kubectl get pods --show-labels
+   77  history
+   78  kubectl get ns
+   79  kubectl get pods
+   80  kubectl get pods -n kube-system
+   81  kubectl create ns secret
+   82  kubectl run secretpod --image=nginx -n secret
+   83  kubectl get pods
+   84  kubectl get pods -n secret
+   85  kubectl config set-context --current --namespace=secret
+   86  kubectl get pods
+   87  kubectl config set-context --current --namespace=default
+   88  kubectl get pods -A
+   89  history
+   90  kubectl api-resources | less
+   91  history | grep git
+   92  vim initcontainer.yaml 
+   93  vim init-example1.yaml 
+   94  vim init-example2.yaml 
+   95  kubectl apply -f init-example2.yaml 
+   96  kubectl get pods
+   97  vim initpod.yaml 
+   98  vim initexample.yaml
+   99  vim ~/.vimrc
+  100  vim initexample.yaml
+  101  nano initexample.yaml
+  102  vim initexample.yaml
+  103  kubectl apply -f initexample.yaml 
+  104  vim initexample.yaml
+  105  kubectl apply -f initexample.yaml 
+  106  kubectl get pods
+  107  kubectl run -h | less
+  108  kubectl run nginx --image=busybox --command -- sleep 20 --dry-run=client -o yaml
+  109  kubectl run wrongpod --image=busybox --command -- sleep 20 --dry-run=client -o yaml
+  110  kubectl get pods
+  111  kubectl describe pod wrongpod 
+  112  kubectl logs wrongpod 
+  113  kubectl delete pod wrongpod 
+  114  kubectl run wrongpod --image=busybox --command --dry-run=client -o yaml -- sleep 20
+  115  history
+  116  vim inittask.yaml
+  117  vim ~/.vimrc
+  118  vim inittask.yaml
+  119  rm ~/.vimrc 
+  120  nano inittask.yaml
+  121  vim inittask.yaml
+  122  kubectl apply -f inittask.yaml 
+  123  kubectl get pods
+  124  vim hallo
+  125  kubectl get deploy
+  126  kubectl set env deploy webserver cow=milk
+  127  kubectl get deploy webserver -o yaml | less
+  128  history | grep yaml
+  129  vim webserver.yaml 
+  130  kubectl explain deployment
+  131  kubectl explain deployment.spec
+  132  kubectl explain deployment.spec.template.spec
+  133  vim webserver.yaml 
+  134  kubectl apply -f webserver.yaml 
+  135  vim webserver.yaml 
+  136  kubectl apply -f webserver.yaml 
+  137  kubectl run restartme --image=nginx --dry-run=client -o yaml > restartme.yaml
+  138  vim restartme.yaml 
+  139  kubectl apply -f restartme.yaml 
+  140  kubectl get pods 
+  141  minikube ssh
+  142  kubectl get pods
+  143  history
+  144  vim ~/.vimrc
+  145  vim test
+  146  vim ~/.vimrc
+  147  kubectl run busybox
+  148  kubectl run busy --image=busybox
+  149  kubectl get pods
+  150  kubectl describe pod busy
+  151  kubectl delete pod busy
+  152  kubectl run busy --image=busybox -- sleep infinity
+  153  kubectl run mariadb
+  154  kubectl run mariadb --image=mariadb
+  155  kubectl get pods
+  156  kubectl describe pod mariadb 
+  157  kubectl get pods
+  158  kubectl logs mariadb
+  159  kubectl delete pod mariadb 
+  160  kubectl run -h | less
+  161  kubectl run mariadb --image=mariadb --env=MARIADB_ROOT_PASSWORD=password
+  162  kubectl get pods
+  163  kubectl get pods mariadb -o yaml | less
+  164  history
+  165  vim ~/.vimrc
+  166  vim hello
+  167  history > /tmp/nov2026
