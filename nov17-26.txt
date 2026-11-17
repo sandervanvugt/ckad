@@ -1,0 +1,205 @@
+    1  eixt
+    2  exit
+    3  sudo apt install vim git -y
+    4  git clone https://github.com/sandervanvugt/ckad
+    5  cd ckad
+    6  ls
+    7  ./minikube-docker-setup.sh 
+    8  sudo reboot
+    9  sudo systemctl reboot -i
+   10  ./countdown 18
+   11  ./countdown 16
+   12  ./countdown 5
+   13  ./countdown 12
+   14  ssh student@192.168.2.3
+   15  sudo reboot
+   16  sudo systemctl reboot -i
+   17  ssh student@192.168.2.3
+   18  ssh student@192.168.2.2
+   19  ssh student@192.168.2.3
+   20  ssh student@192.168.2.2
+   21  ssh student@192.168.2.3
+   22  ssh student@192.168.2.2
+   23  cd ckad
+   24  ls
+   25  vim sidecar.yaml 
+   26  vim sidecar2.yaml
+   27  vim simplejob.yaml 
+   28  kubectl apply -f simplejob.yaml 
+   29  ping nu.nl
+   30  kubectl apply -f simplejob.yaml 
+   31  sudo reboot
+   32  sudo systemctl reboot -i
+   33  kubectl apply -f simplejob.yaml 
+   34  cd ckad
+   35  kubectl apply -f simplejob.yaml 
+   36  minikube status
+   37  minikube start
+   38  kubectl apply -f simplejob.yaml 
+   39  kubectl get jobs,pods
+   40  vim paralleljob.yaml 
+   41  kubectl apply -f paralleljob.yaml 
+   42  kubectl get jobs,pods
+   43  kubectl explain jobs.spec | less
+   44  vim cron-example.yaml 
+   45  kubectl apply -f cron-example.yaml 
+   46  vim cron-example.yaml 
+   47  kubectl api-versions
+   48  vim cron-example.yaml 
+   49  kubectl apply -f cron-example.yaml 
+   50  kubectl get cronjobs,jobs,pods
+   51  vim failed-job.yaml 
+   52  kubectl apply -f failed-job.yaml 
+   53  kubectl get jobs,pods
+   54  kubectl describe pod failed-job-8mtnm 
+   55  kubectl logs failed-job-rpnhj 
+   56  cat /etc/crontab 
+   57  history
+   58  vim nightly-backup-job.yaml 
+   59  kubectl apply -f nightly-backup-job.yaml 
+   60  cd alpmap/
+   61  mv Containerfile Dockerfile
+   62  vim Dockerfile 
+   63  docker build -t alpmap .
+   64  echo hello > sander.repo
+   65  docker build -t alpmap .
+   66  docker images
+   67  history
+   68  cd ..
+   69  mkdir lab
+   70  cp alpmap/Dockerfile lab/
+   71  cd lab
+   72  vim Dockerfile 
+   73  docker build -t sleep .
+   74  docker images
+   75  minikube image load sleep:latest
+   76  kubectl explain pod.spec.containers | less
+   77  kubectl run sleep --image=sleep:latest --dry-run=client -o yaml
+   78  kubectl run sleep --image=sleep:latest --dry-run=client -o yaml > sleep.yaml
+   79  vim sleep.yaml 
+   80  kubectl apply -f sleep.yaml 
+   81  vim sleep.yaml 
+   82  kubectl apply -f sleep.yaml 
+   83  kubectl get pods
+   84  history
+   85  cat sleep.yaml 
+   86  cat Dockerfile 
+   87  kubectl api-resources | less
+   88  kubectl create deploy bluelabel --image=nginx
+   89  kubectl get all --show-labels
+   90  cd
+   91  kubectl get pods
+   92  kubectl get jobs
+   93  kubectl delete jobs failed-job parallel-job simple-job 
+   94  kubectl delete cronjobs.batch hello nightly-backup 
+   95  kubectl create deploy newwev --image=nginx --replicas=3
+   96  kubectl get all --selector app=newwev
+   97  kubectl get all --selector app=newwev -o wide
+   98  kubectl scale deploy newwev --replicas=5
+   99  kubectl get all --selector app=newwev -o wide
+  100  kubectl autoscale deployment newwev --min=2 --max=6
+  101  kubectl autoscale --help | less
+  102  kubectl create deploy rolling --image=nginx:1.29 --replicas=5
+  103  kubectl get all --selector app=rolling
+  104  kubectl set image deploy rolling nginx:1.30
+  105  kubectl set image deploy rolling nginx=nginx:1.30
+  106  kubectl get all --selector app=rolling
+  107  kuebctl rollout status deployment/rolling
+  108  kubectl rollout status deployment/rolling
+  109  kubectl rollout history deployment/rolling
+  110  kubectl edit deployments.apps newwev 
+  111  kubectl get all --selector app=rolling
+  112  kubectl rollout undo deployment rolling --to-revision=1
+  113  kubectl get all --selector app=rolling
+  114  kubectl rollout history deployment rolling 
+  115  kubectl rollout history deployment rolling --help
+  116  kubectl rollout history deployment rolling --revision=1
+  117  kubectl rollout history deployment rolling --revision=2
+  118  kubectl edit deploy rolling 
+  119  kubectl set image deploy rolling nginx=nginx:1.27
+  120  kubectl get all --selector app=rolling
+  121  kubectl create cm testing --from-literal environment=testing
+  122  kubectl edit cm testing
+  123  kubectl create deploy mydeploy
+  124  kubectl create deploy mydeploy --image=nginx
+  125  kubectl set env deploy/mydeploy --from configmap/testing
+  126  kubectl edit deploy mydeploy 
+  127  history
+  128  kubectl create deploy mydb --image=mariadb --replicas=3
+  129  kubectl get all --selector app=mydb
+  130  kubectl logs mydb-576bbf978d-khcpp 
+  131  kubectl create secret generic mydbpw --from-literal root_password=password
+  132  kubectl edit secret mydbpw 
+  133  echo cGFzc3dvcmQ= | base64 -d
+  134  kubectl set env deploy/mydb --from secret/mydbpw --prefix=mariadb_
+  135  kubectl get all --selector app=mydb
+  136  kubectl logs mydb-5f468f5fbb-f4pq2 
+  137  kubectl get deploy mydb -o yaml 
+  138  kubectl set env deploy/mydb --from secret/mydbpw --prefix=MARIADB_
+  139  kubectl get all --selector app=mydb
+  140  kubectl get deploy mydb -o yaml 
+  141  kubectl edit deployments.apps mydb 
+  142  history
+  143  cd ckad/
+  144  vim cmfile.yaml 
+  145  vim cmfileapp.yaml 
+  146  vim cmfile.yaml 
+  147  vim cmfileapp.yaml 
+  148  kubectl apply -f cmfile.yaml 
+  149  kubectl apply -f cmfileapp.yaml 
+  150  kubectl exec config-demo -- cat /etc/config/app.conf
+  151  kubectl logs config-demo
+  152  kubectl create cm -h | less
+  153  kubectl create cm passfile --from-file /etc/passwd
+  154  kubectl edit cm passfile 
+  155  vim cmfileapp.yaml 
+  156  kubectl edit cm passfile 
+  157  vim cmfileapp.yaml 
+  158  kubectl apply -f cmfileapp.yaml 
+  159  kubectl delete -f cmfileapp.yaml 
+  160  vim cmfileapp.yaml 
+  161  kubectl apply -f cmfileapp.yaml 
+  162  kubectl exec passapp -- cat /tmp/passwd
+  163  vim cmfileapp.yaml 
+  164  kubectl edit cm app-config 
+  165  kubectl exec config-demo -- cat /etc/config/app.conf
+  166  sleep 30
+  167  kubectl exec config-demo -- cat /etc/config/app.conf
+  168  vim hardquota.yaml 
+  169  kubectl create quota -h | less
+  170  kubectl create ns restricted
+  171  kubectl create quota -h | less
+  172  kubectl create quota my-quota --hard=cpu=1500m,memory=1G,pods=4 -n restricted
+  173  kubectl create deploy rnginx -n restricted --image=nginx --replicas=5
+  174  kubectl get all -n restricted
+  175  kubectl describe rs -n restricted 
+  176  kubectl set -h | less
+  177  kubectl set resources -h | less
+  178  kubectl set resources deployment rnginx -n restricted --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=128Mi
+  179  kubectl get all -n restricted
+  180  kubectl describe rs -n restricted 
+  181  kubectl describe ns restricted 
+  182  history
+  183  vim morevolumes.yaml 
+  184  kubectl apply -f morevolumes.yaml 
+  185  kubectl exec -it morevol -c busy1 -- touch /busy1/whatever
+  186  kubectl exec -it morevol -c busy2 -- ls /busy2
+  187  vim morevolumes.yaml 
+  188  history
+  189  vim pv.yaml 
+  190  kubectl apply -f pv.yaml
+  191  kubectl get pv
+  192  vim pvc.yaml 
+  193  kubectl apply -f pvc.yaml
+  194  kubectl get pv,pvc
+  195  kubectl get sc
+  196  vim pv-pod.yaml 
+  197  kubectl apply -f pv-pod.yaml 
+  198  kubectl exec -it pv-pod -- touch /usr/share/nginx/html/hellofile
+  199  kubectl describe pv pvc-fd9d8918-bc5f-4964-9153-264bd24e9058 
+  200  minikube ssh
+  201  cd /tmp
+  202  ls
+  203  cd 
+  204  history > /nov17-26.txt
+  205  history > /tmp/nov17-26.txt
