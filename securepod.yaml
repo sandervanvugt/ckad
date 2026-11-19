@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secure-app
+spec:
+  serviceAccountName: pod-reader
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+  containers:
+  - name: kubectl
+    image: bitnami/kubectl
+    command: ["sleep", "3600"]
